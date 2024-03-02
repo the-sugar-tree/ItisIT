@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
+@import url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2");
 
 * {
 	margin: 0;
@@ -43,7 +44,7 @@ body * {
 }
 
 .mont {
-	font-family: Montserrat;
+	font-family: MBC1961GulimM;
 }
 .pret {
 	font-family: Pretendard;
@@ -145,7 +146,7 @@ body * {
 }
 
 .key {
-	font-family: Montserrat;
+	font-family: MBC1961GulimM;
 	font-size: 3rem;
 	font-weight: 500;
 	color: #4e5668;
@@ -255,7 +256,7 @@ body * {
 	transition: opacity ease-in-out 0.2s;
 }
 .port-link {
-    font-family: Montserrat;
+    font-family: MBC1961GulimM;
     font-weight: 600;
 	color: #dadfee;
 	border: #dadfee 1px solid;
@@ -330,7 +331,7 @@ body * {
 	}
 
 	.key {
-		font-family: Montserrat;
+		font-family: MBC1961GulimM;
 		font-size: 2rem;
 		font-weight: 500;
 		color: #4e5668;
@@ -385,7 +386,7 @@ body * {
 	}
 
 	.key {
-		font-family: Montserrat;
+		font-family: MBC1961GulimM;
 		font-size: 2rem;
 		font-weight: 500;
 		color: #4e5668;
@@ -440,7 +441,7 @@ body * {
 	}
 
 	.key {
-		font-family: Montserrat;
+		font-family: MBC1961GulimM;
 		font-size: 2rem;
 		font-weight: 500;
 		color: #4e5668;
@@ -500,7 +501,7 @@ body * {
 	}
 
 	.key {
-		font-family: Montserrat;
+		font-family: MBC1961GulimM;
 		font-size: 1rem;
 		font-weight: 500;
 		color: #4e5668;
@@ -567,7 +568,7 @@ body * {
 	}
 
 	.key {
-		font-family: Montserrat;
+		font-family: MBC1961GulimM;
 		font-size: 1rem;
 		font-weight: 500;
 		color: #4e5668;
