@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
+		<title>It is IT</title>
+		<link rel="stylesheet" href="style.css" />
+		<script src="https://kit.fontawesome.com/e150fcae91.js" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<div class="cursor"></div>
+
+		<div class="app">
+			<div class="page intro">
+				<p class="darkT bigxl bold mont logo"><img src="img/logo.png" alt="logo" class="logo-img" />It is IT</p>
+				<p class="darkT mid pret logo-des">일산대진고 SW 동아리</p>
+			</div>
+			<div class="page duction">
+				<p class="darkT bigl bold mont">It is IT</p>
+				<p class="darkT big bold mont">어떤 동아리 인가요?</p>
+				<p class="darkT mid pret tacen">설명<span class="bold mont">It is IT</span>동아리 설명</p>
+			</div>
+			<div class="page curriculum">
+				<p class="darkT bigl bold mont tacen">It is IT에서는<br />무엇을 배우나요?</p>
+				<p class="darkT mid pret tacen">크게 아래 내용으로 진행 됩니다.</p>
+				<div class="curs">
+					<div class="cur">
+						<img src="img/1.png" alt="web" />
+						<div>
+							<p class="darkT big bold mont"><span style="color: #f06529">WEB 기초</span></p>
+							<p class="darkT mid ligt pret">웹의 기초를 구성하는 HTML과 CSS,<br/>그리고 JS를 공부합니다.</p>
+						</div>
+					</div>
+					<div class="cur">
+						<img src="img/2.png" alt="web" />
+						<div>
+							<p class="darkT big bold mont"><span style="color: #F05138">App 기초</span></p>
+							<p class="darkT mid ligt pret">Swift와 안드로이드 스튜디오를 이용하여<br/>간단한 앱개발을 공부합니다.</p>
+						</div>
+					</div>
+					<div class="cur">
+						<img src="img/3.png" alt="web" />
+						<div>
+							<p class="darkT big bold mont"><span style="color: #333333">Figma</span></p>
+							<p class="darkT mid ligt pret">디자인 툴인 Figma를 이용하여<br/>사용자들의 UI/UX를 고려한 디자인을 배웁니다.</p>
+						</div>
+					</div>
+					<div class="cur">
+						<img src="img/4.png" alt="web" />
+						<div>
+							<p class="darkT big bold mont"><span style="color: #000">정보보안</span></p>
+							<p class="darkT mid ligt pret">웹하면 빠질 수 없는 서버 보안도<br />어떻게 구성해야 안전한기 배우게 됩니다.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page portfolio-t">
+				<p class="darkT bigl bold mont tacen">It is IT는<br />어떤 프로젝트가 있나요?</p>
+				<p class="darkT mid pret tacen">아래는 2023년 진행한 프로젝트입니다.</p>
+			</div>
+			<div class="page portfolio">
+				<div class="port-img port1">
+					<div class="port">
+						<p class="port-title mont mid bold">전자출석체크</p>
+						<p class="port-content pret">간편한 출석체크 유틸리티</p>
+						<a alert="해당 페이지는 준비중입니다." class="port-link">View</a>
+					</div>
+				</div>
+				<div class="port-img port2">
+					<div class="port">
+						<p class="port-title mont mid bold">Hometify</p>
+						<p class="port-content pret">새로운 도시문제 솔루션</p>
+						<a href="https://hometify.kr/" class="port-link">View</a>
+					</div>
+				</div>
+				<div class="port-img port3">
+					<div class="port">
+						<p class="port-title mont mid bold">DAEJIN PAY</p>
+						<p class="port-content pret">줄서지 않고 간편하게</p>
+						<a href="http://bbiyakyee7.com/daejinpay.html" class="port-link">View</a>
+					</div>
+				</div>
+				<div class="port-img port4">
+					<div class="port">
+						<p class="port-title mont mid bold">Play Us.</p>
+						<p class="port-content pret">색다르게, 더욱 재미있게</p>
+						<a href="https://about-play-us.netlify.app/" class="port-link">View</a>
+					</div>
+				</div>
+			</div>
+			<div class="page application">
+				<p class="darkT bigl bold mont tacen">지원은 어디서 하나요?</p>
+				<a href="https://admissionssw.netlify.app/" target="_blank" class="aplic-link mid bold pret">지원하러 가기</a>
+			</div>
+			<div class="page contact darkB">
+				<p class="whiteT bigl bold mont tacen">Contact</p>
+				<a href="https://www.instagram.com/isdj_It is IT/" class="whiteT mid mont tacen"><i class="fa-brands fa-instagram"></i> @isdj_It is IT</a>
+				<p class="whiteT pret smls tacen">경기도 고양시 일산서구 대산로 246</p>
+				<p class="whiteT pret smls tacen">Copyright &copy; by It is IT All Right Reserved</p>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+		<script src="main.js"></script>
+		<script>
+			window.sr = ScrollReveal({ reset: true });
+
+			// sr.reveal(".page1", {
+			// 	origin: "top",
+			// 	duration: 500,
+			// 	distance: "200px",
+			// });
+
+			sr.reveal(".logo-img", {
+				origin: "top",
+				duration: 500,
+				distance: "200px",
+			});
+
+			sr.reveal(".logo", {
+				origin: "right",
+				duration: 500,
+				distance: "200px",
+			});
+
+			sr.reveal(".logo-des", {
+				origin: "bottom",
+				duration: 500,
+				distance: "200px",
+			});
+			
+			// It has been a hard day
+		</script>
+	</body>
+</html>
