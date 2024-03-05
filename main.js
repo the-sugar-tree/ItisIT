@@ -1,12 +1,12 @@
-document.body.addEventListener("mousemove", (evt) => {
-	const mouseX = evt.clientX;
-	const mouseY = evt.clientY;
+// document.body.addEventListener("mousemove", (evt) => {
+// 	const mouseX = evt.clientX;
+// 	const mouseY = evt.clientY;
 
-	gsap.set(".cursor", {
-		x: mouseX,
-		y: mouseY,
-	});
-});
+// 	gsap.set(".cursor", {
+// 		x: mouseX,
+// 		y: mouseY,
+// 	});
+// });
 
 window.addEventListener("keydown", (text) => {
 	let t = text.key.toUpperCase();
