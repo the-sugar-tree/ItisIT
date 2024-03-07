@@ -1,8 +1,20 @@
 /* @import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic); */
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
-@font-face {
+/* @font-face {
     font-family: 'MBC1961GulimM';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+} */
+@font-face {
+    font-family: 'MBC1961M';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961M.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SokchoBadaDotum';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/SokchoBadaDotum.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -31,11 +43,6 @@ body {
 	overflow-x: hidden;
 }
 
-body,
-body * {
-	cursor: none;
-}
-
 .page {
 	width: 100%;
 	height: 100vh;
@@ -48,11 +55,25 @@ body * {
 	gap: 2rem;
 }
 
+.curriculum {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+.curri-box {
+	/* border: 2px solid black; */
+    background-color: #dadfee;
+	margin-top: 10px;
+	padding-top: 15px;
+	border-radius: 10px
+}
+
 .mont {
-	font-family: MBC1961GulimM;
+	font-family: SokchoBadaDotum;
 }
 .pret {
-	font-family: Pretendard;
+	font-family: SokchoBadaDotum;
 }
 
 .tacen {
@@ -129,9 +150,6 @@ body * {
 
 .app {
 	height: 100vh;
-	overflow-y: scroll;
-	scroll-snap-type: y mandatory;
-	scroll-snap-points-y: repeat(100vh);
 }
 
 .logo {
@@ -241,7 +259,7 @@ body * {
 	background: linear-gradient(#00000000, #000);
 }
 .port1 {
-	background-image: url("./img/check.png");
+	background-image: url("./img/mango.png");
 }
 .port2 {
 	background-image: url("./img/hometify.png");
