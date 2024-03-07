@@ -55,6 +55,7 @@ body {
 }
 
 .curriculum {
+	padding: 10%;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -66,7 +67,12 @@ body {
     background-color: #dadfee;
 	margin-top: 10px;
 	padding-top: 15px;
-	border-radius: 10px
+	border-radius: 10px;
+}
+
+.curri-box h4 {
+	padding-right: 5%;
+	padding-left: 5%;
 }
 
 .mont {
