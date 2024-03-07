@@ -301,14 +301,14 @@ body {
   color: #000;
 }
 .PR1 {
-  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #646464;
   color: transparent;
   margin-right: auto;
   margin-left: 20%;
 }
 .PR2 {
-  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #646464;
   color: transparent;
   margin-left: auto;
@@ -361,7 +361,7 @@ body {
     border-radius: 4px;
   }
 }
-/* ㅇㅋ ㅇㅋㅇㅋ */
+
 @media (max-width: 1000px) {
   .bigxl {
     font-size: 6rem;
