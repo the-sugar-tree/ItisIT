@@ -1,11 +1,4 @@
-/* @import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic); */
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
-/* @font-face {
-    font-family: 'MBC1961GulimM';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-} */
 @font-face {
     font-family: 'MBC1961M';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961M.woff2') format('woff2');
@@ -41,6 +34,12 @@ body {
 	height: 100vh;
 	width: 100%;
 	overflow-x: hidden;
+}
+
+.rotate-plz {
+	position: absolute;
+	height: 100vh;
+	width: 100vw;
 }
 
 .page {
@@ -489,18 +488,16 @@ body {
 }
 
 @media (orientation: portrait) {
-	/* Portrait 모드일 때 적용할 CSS */
+	/* 세로 모드일 때 적용할 CSS */
+	.rotate-plz {
+		visibility: hidden;
+	}
 }
 
 @media (orientation: landscape) {
-	html {
-		transform: rotate(-90deg);
-		transform-origin: top left;
-		position: absolute;
-		top: 100%;
-		left: 0;
-		width: 100vh;
-		height: 100vw;
+	/* 가로 모드일 때 적용할 CSS */
+	.rotate-plz {
+		visibility: visible;
 	}
 }
 
