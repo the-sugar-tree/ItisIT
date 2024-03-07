@@ -1,29 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="shortcut icon" href="img/logo-removebg.png" type="image/x-icon" />
+
+		<!-- open graph meta -->
+		<meta property="og:url" content="https://itisit.or.kr" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="It is IT (정보공학연구소)" />
+		<meta property="og:description" content="저현고등학교 동아리 It is IT의 홈페이지 입니다." />
+		<meta property="og:image" content="img/logo-removebg.png" />
+
+		<!-- 맨 밑에 아이콘 (인스타, 전화) -->
+		<script src="https://kit.fontawesome.com/e150fcae91.js" crossorigin="anonymous"></script>
+
 		<title>It is IT</title>
 		<link rel="stylesheet" href="style.css" />
-		<script src="https://kit.fontawesome.com/e150fcae91.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
-		<div class="rotate-plz" style="visibility: hidden;">
-			<img src="img/rotate-screen.png">
-			<p>화면을 돌려주세요!</p>
-		</div>
 		<div class="app">
 			<div class="page intro">
 				<p class="darkT bigxl bold mont logo"><img src="img/logo-removebg.png" alt="logo" class="logo-img" />It is IT</p>
-				<p class="darkT mid pret logo-des">저현고등학교 정보공학연구소</p>
-				<a href="#apply" class="darkT mid pret logo-des">신청 바로가기</a>
+				<p class="darkT big pret logo-des">저현고등학교 정보공학연구소</p>
+				<a href="#apply" id="apply-button" class="darkT mid pret logo-des aplic-link">신청 바로가기</a>
 			</div>
 			<div class="page duction">
 				<p class="darkT bigl bold mont">It is IT</p>
 				<p class="darkT big bold mont">어떤 동아리 인가요?</p>
 				<p class="darkT mid pret tacen">명실상부 저현고등학교 최고의 IT 동아리 " <span class="bold mont">It is IT</span> " 는<br>인공지능 모델 플랫폼과 프로그래밍 언어를 학습 및 활용하여<br>다양한 문제를 탐구 및 해결하는 동아리입니다</p>
+			</div>
+			<div class="page">
+				<p class="darkT bigl bold mont">동아리 자랑좀 하겠습니다~</p>
+				<p class="darkT big regu mont">
+					- &lt;2년 연속 저현고등학교 우수 동아리 선정&gt;<br>
+					- &lt;교내 유일 컴퓨터실 독점&gt;<br>
+					- &lt;삼성 주니어 SW 아카데미 2년 연속 발탁&gt;<br>
+					- &lt;Microsoft Azure Empowerment Project 선정&gt;<br>
+					- &lt;비버 챌린지 시행 및 운영진 참여&gt;<br>
+					- &lt;저현고등학교 최대 크기 및 유일 순수 공학 동아리&gt;
+				</p>
 			</div>
 			<div class="page curriculum1">
 				<p class="darkT bigl bold mont tacen">It is IT에서는<br>무엇을 배우나요?</p>
@@ -68,15 +85,21 @@
 					<div class="port">
 						<p class="port-title mont mid bold">Mango</p>
 						<p class="port-content pret">저현고등학교 웹사이트</p>
-						<a class="port-link" onclick="alert('해당 페이지는 준비 중 입니다.');">View</a>
+						<a class="port-link" target="_blank" href="https://drive.google.com/file/d/1dQLFoz8aflUjJFd2mhPsfvNEKoGLm8-X/view?usp=sharing">View</a>
 					</div>
 				</div>
 				<div class="port-img port2">
 					<div class="port">
+						<p class="port-title mont mid bold">Slime Story</p>
+						<p class="port-content pret">슬라임의 모험!</p>
+						<a class="port-link" target="_blank" href="https://youtu.be/HPFSFxngrrg">View</a>
 					</div>
 				</div>
 				<div class="port-img port3">
 					<div class="port">
+						<p class="port-title mont mid bold">데이터 분석</p>
+						<p class="port-content pret"></p>
+						<a class="port-link" target="_blank" href="https://drive.google.com/drive/folders/1zcnMVGmdtrMDEutmKJXBRLMu--A0m_JJ?usp=sharing">View</a>
 					</div>
 				</div>
 			</div>
@@ -126,7 +149,8 @@
 			</div>
 			<div class="page contact darkB">
 				<p class="whiteT bigl bold mont tacen">Contact</p>
-				<a href="https://www.instagram.com/jeohyeon_itisit/" class="whiteT mid mont tacen"><i class="fa-brands fa-instagram"></i> @jeohyeon_itisit</a>
+				<a href="https://www.instagram.com/jeohyeon_itisit/" target="_blank" class="whiteT mid mont tacen"><i class="fa-brands fa-instagram"></i> @jeohyeon_itisit</a>
+				<a href="tel:01085979775" target="_blank" class="whiteT mid mont tacen"><i class="fa-solid fa-phone"></i> 010-8597-9775 (부장 김경래)</a>
 				<p class="whiteT pret smls tacen">경기도 고양시 일산동구 위시티 3로 37</p>
 				<p class="whiteT pret smls tacen">Copyright &copy; by It is IT All Right Reserved</p>
 			</div>

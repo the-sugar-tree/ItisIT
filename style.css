@@ -1,4 +1,3 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
 @font-face {
     font-family: 'MBC1961M';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961M.woff2') format('woff2');
@@ -20,13 +19,13 @@
 }
 
 .video-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	overflow: hidden;
 }
 
 html,
@@ -37,10 +36,8 @@ body {
 	overflow-x: hidden;
 }
 
-.rotate-plz {
-	position: absolute;
-	height: 100vh;
-	width: 100vw;
+#apply-button {
+	text-align: center;
 }
 
 .page {
@@ -164,7 +161,8 @@ body {
 }
 
 .logo-img {
-	height: 10rem;
+	margin-bottom: 3rem;
+	height: 15rem;
 	border-radius: 4px;
 	margin-right: 2rem;
 }
@@ -268,13 +266,10 @@ body {
 	background-image: url("./img/mango.png");
 }
 .port2 {
-	background-image: url("./img/hometify.png");
+	background-image: url("./img/slimestory.png");
 }
 .port3 {
-	background-image: url("./img/djpay.png");
-}
-.port4 {
-	background-image: url("./img/Play_Us.png");
+	background-image: url("./img/.png");
 }
 .port-title {
 	color: #dadfee;
@@ -336,7 +331,8 @@ body {
 		font-size: 0.7rem;
 	}
 	.logo-img {
-		height: 8rem;
+		margin-bottom: 2.4rem;
+		height: 12rem;
 		border-radius: 4px;
 		margin-right: 2rem;
 	}
@@ -369,7 +365,8 @@ body {
 		font-size: 0.6rem;
 	}
 	.logo-img {
-		height: 6rem;
+		margin-bottom: 1.8rem;
+		height: 9rem;
 		border-radius: 4px;
 		margin-right: 2rem;
 	}
@@ -402,7 +399,8 @@ body {
 		font-size: 0.5rem;
 	}
 	.logo-img {
-		height: 6rem;
+		margin-bottom: 1.8rem;
+		height: 9rem;
 		border-radius: 4px;
 		margin-right: 1rem;
 	}
@@ -435,7 +433,8 @@ body {
 		font-size: 0.5rem;
 	}
 	.logo-img {
-		height: 3rem;
+		margin-bottom: 0.9rem;
+		height: 4.5rem;
 		border-radius: 4px;
 		margin-right: 1rem;
 	}
@@ -475,7 +474,8 @@ body {
 		font-size: 0.4rem;
 	}
 	.logo-img {
-		height: 3rem;
+		margin-bottom: 0.9rem;
+		height: 4.5rem;
 		border-radius: 4px;
 		margin-right: 0.5rem;
 	}
