@@ -31,6 +31,7 @@
 
 html,
 body {
+	scroll-behavior: smooth;
 	height: 100vh;
 	width: 100%;
 	overflow-x: hidden;
@@ -50,7 +51,6 @@ body {
 	justify-content: center;
 	align-items: center;
 	background: #fff;
-	scroll-snap-align: start;
 	gap: 2rem;
 }
 
@@ -58,6 +58,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
+	transform: translateY(-10vh);
 }
 
 .curri-box {
@@ -191,7 +192,6 @@ body {
 
 .curs {
 	display: flex;
-	flex-direction: column;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
