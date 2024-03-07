@@ -192,6 +192,7 @@ body {
 
 .curs {
 	display: flex;
+	flex-direction: column;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
@@ -310,12 +311,6 @@ body {
 	padding: 1rem 5rem;
 }
 
-@media only screen and (hover: none) and (pointer: coarse) {
-	.cursor {
-		display: none;
-	}
-}
-
 @media (max-width: 1400px) {
 	.bigxl {
 		font-size: 8rem;
@@ -340,35 +335,6 @@ body {
 		border-radius: 4px;
 		margin-right: 2rem;
 	}
-
-	.duction-key span {
-		display: none;
-	}
-	.duction-key::after {
-		content: "글자를 눌러보세요!";
-	}
-
-	.keyboard {
-		display: flex;
-		gap: 0.5rem;
-	}
-
-	.key {
-		font-family: MBC1961GulimM;
-		font-size: 2rem;
-		font-weight: 500;
-		color: #4e5668;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border: #4e5668 1px solid;
-		border-radius: 4px;
-		height: 3rem;
-		width: 3rem;
-		box-shadow: #4e5668 4px 4px 0;
-		transition: box-shadow ease-in-out 0.1s;
-	}
-
 	.port-img {
 		height: 20rem;
 		width: 30rem;
@@ -402,28 +368,6 @@ body {
 		border-radius: 4px;
 		margin-right: 2rem;
 	}
-
-	.keyboard {
-		display: flex;
-		gap: 0.5rem;
-	}
-
-	.key {
-		font-family: MBC1961GulimM;
-		font-size: 2rem;
-		font-weight: 500;
-		color: #4e5668;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border: #4e5668 1px solid;
-		border-radius: 4px;
-		height: 3rem;
-		width: 3rem;
-		box-shadow: #4e5668 4px 4px 0;
-		transition: box-shadow ease-in-out 0.1s;
-	}
-
 	.port-img {
 		height: 15rem;
 		width: 20rem;
@@ -457,39 +401,12 @@ body {
 		border-radius: 4px;
 		margin-right: 1rem;
 	}
-
-	.keyboard {
-		display: flex;
-		gap: 0.5rem;
-	}
-
-	.key {
-		font-family: MBC1961GulimM;
-		font-size: 2rem;
-		font-weight: 500;
-		color: #4e5668;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border: #4e5668 1px solid;
-		border-radius: 4px;
-		height: 3rem;
-		width: 3rem;
-		box-shadow: #4e5668 4px 4px 0;
-		transition: box-shadow ease-in-out 0.1s;
-	}
-
 	.port-img {
 		height: 15rem;
 		width: 20rem;
 		background-position: center;
 		background-size: cover;
 		border-radius: 4px;
-	}
-
-	.cur {
-		height: 8rem;
-		width: 80%;
 	}
 }
 
@@ -517,39 +434,12 @@ body {
 		border-radius: 4px;
 		margin-right: 1rem;
 	}
-
-	.keyboard {
-		display: flex;
-		gap: 0.5rem;
-	}
-
-	.key {
-		font-family: MBC1961GulimM;
-		font-size: 1rem;
-		font-weight: 500;
-		color: #4e5668;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border: #4e5668 1px solid;
-		border-radius: 4px;
-		height: 2rem;
-		width: 2rem;
-		box-shadow: #4e5668 4px 4px 0;
-		transition: box-shadow ease-in-out 0.1s;
-	}
-
 	.port-img {
 		height: 10rem;
 		width: 20rem;
 		background-position: center;
 		background-size: cover;
 		border-radius: 4px;
-	}
-
-	.cur {
-		height: 7rem;
-		width: 80%;
 	}
 }
 
@@ -589,29 +479,28 @@ body {
 		display: flex;
 		gap: 0.5rem;
 	}
-
-	.key {
-		font-family: MBC1961GulimM;
-		font-size: 1rem;
-		font-weight: 500;
-		color: #4e5668;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border: #4e5668 1px solid;
-		border-radius: 4px;
-		height: 2rem;
-		width: 2rem;
-		box-shadow: #4e5668 4px 4px 0;
-		transition: box-shadow ease-in-out 0.1s;
-	}
-
 	.port-img {
 		height: 10rem;
 		width: 15rem;
 		background-position: center;
 		background-size: cover;
 		border-radius: 4px;
+	}
+}
+
+@media (orientation: portrait) {
+	/* Portrait 모드일 때 적용할 CSS */
+}
+
+@media (orientation: landscape) {
+	html {
+		transform: rotate(-90deg);
+		transform-origin: top left;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 100vh;
+		height: 100vw;
 	}
 }
 
