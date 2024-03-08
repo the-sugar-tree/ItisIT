@@ -38,10 +38,6 @@ body {
   overflow-x: hidden;
 }
 
-#apply-button {
-  text-align: center;
-}
-
 .page {
   display: flex;
   width: 100%;
@@ -316,6 +312,7 @@ body {
 }
 
 .aplic-link {
+  text-align: center;
   padding: 1rem 5rem;
   border: #4e5668 1px solid;
   color: #4e5668;
