@@ -2,214 +2,454 @@
 <html lang="ko">
 
 <head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="shortcut icon" href="img/logo-removebg.png" type="image/x-icon" />
+    <!-- 기본 메타 태그 설정 -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="theme-color" content="#646464" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#4e5668" media="(prefers-color-scheme: dark)" />
 
-	<!-- open graph meta -->
-	<meta property="og:url" content="https://itisit.or.kr" />
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="It is IT (정보공학연구소)" />
-	<meta property="og:description" content="저현고등학교 동아리 It is IT의 홈페이지 입니다." />
-	<meta property="og:image" content="img/logo-removebg.png" />
+    
+    <style>
+        /* 반응형 텍스트 줄바꿈 최적화 */
+        @media (max-width: 700px) {
+            .responsive-text {
+                word-break: keep-all;
+                overflow-wrap: break-word;
+            }
+            
+            .mobile-break {
+                display: block;
+                height: 0.8em;
+            }
+            
+            .text-chunk {
+                display: inline-block;
+            }
+            
+            .text-spacer {
+                display: block;
+                height: 1.5em;
+            }
+        }
+        
+        @media (min-width: 701px) {
+            .mobile-break {
+                display: none;
+            }
+            
+            .text-chunk::after {
+                content: '\A';
+                white-space: pre;
+            }
+            
+            .text-spacer {
+                display: block;
+                height: 1em;
+            }
+        }
+    </style>
+    
+    <!-- 파비콘 설정 (브라우저 탭에 표시되는 아이콘) -->
+    <link rel="shortcut icon" href="img/logo-removebg.png" type="image/x-icon" />
 
-	<!-- 맨 밑에 아이콘 (인스타, 전화) -->
-	<script src="https://kit.fontawesome.com/e150fcae91.js" crossorigin="anonymous"></script>
+    <!-- 소셜 미디어 공유를 위한 오픈 그래프 메타 태그 -->
+    <meta property="og:url" content="https://itisit.or.kr" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="It is IT (정보공학연구소)" />
+    <meta property="og:description" content="저현고등학교 동아리 It is IT의 홈페이지 입니다." />
+    <meta property="og:image" content="img/logo-removebg.png" />
 
-	<title>It is IT</title>
-	<link rel="stylesheet" href="style.css" />
+    <!-- Font Awesome 아이콘 라이브러리 연결 -->
+    <script src="https://kit.fontawesome.com/e150fcae91.js" crossorigin="anonymous"></script>
+
+    <!-- 페이지 제목 및 스타일시트 연결 -->
+    <title>It is IT</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- 모바일 최적화를 위한 추가 메타 태그 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#646464" /> <!-- 모바일 브라우저 테마 색상 -->
+    <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- iOS 웹앱 모드 지원 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> <!-- iOS 상태바 스타일 -->
+    <meta name="format-detection" content="telephone=no" /> <!-- 전화번호 자동 링크 방지 -->
+    <link rel="preload" href="img/logo-removebg.png" as="image" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961M.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/SokchoBadaDotum.woff2" as="font" type="font/woff2" crossorigin />
 </head>
 
 <body>
-	<div class="app">
-		<div class="page intro">
-			<p class="darkT bigxl bold mont logo"><img src="img/logo-removebg.png" alt="logo" class="logo-img" />It is
-				IT</p>
-			<p class="darkT big pret logo-des">저현고등학교 정보공학연구소</p>
-			<a href="#apply" id="apply-button" class="darkT mid pret logo-des aplic-link">신청 바로가기</a>
-		</div>
-		<div class="page duction">
-			<p class="darkT bigl bold mont">It is IT</p>
-			<p class="darkT big bold mont">어떤 동아리 인가요?</p>
-			<p class="darkT mid pret tacen">명실상부 저현고등학교 최고의 IT 동아리 " <span class="bold mont">It is IT</span> " 는<br>인공지능
-				모델 플랫폼과 프로그래밍 언어를 학습 및 활용하여<br>다양한 문제를 탐구 및 해결하는 동아리입니다</p>
-		</div>
-		<div class="page">
-			<div class="PR-title" style="width: 100%; display: flex; flex-direction: row;">
-				<p class="PR1 bigl mont">동아리</p>
-				<p class="darkT bigl bold mont">'자랑'</p>
-				<p class="PR2 bigl mont">이라면</p>
-			</div>
-			<p class="darkT mid regu mont" style="text-align:center; line-height: 3em;">
-				&lt;2년 연속 저현고등학교 '우수 동아리' 선정&gt;<br>
-				&lt;교내 유일 '컴퓨터실 독점'&gt;<br>
-				&lt;삼성 주니어 SW 아카데미 '2년 연속' 발탁&gt;<br>
-				&lt;Microsoft Azure Empowerment Project 선정&gt;<br>
-				&lt;'비버 챌린지' 시행 및 운영진 참여&gt;<br>
-				&lt;저현고등학교 '최대 크기 및 유일' 순수 공학 동아리&gt;<br>
-				...
-			</p>
-			<p class="darkT big bold mont">이정도가 되시겠다~</p>
-		</div>
-		<div class="page curriculum1">
-			<p class="darkT bigl bold mont tacen">It is IT에서는<br>무엇을 배우나요?</p>
-			<p class="darkT mid pret tacen">크게 아래 내용으로 진행 됩니다.</p>
-			<div class="curs">
-				<div class="cur">
-					<img src="img/app.png" alt="web" />
-					<div>
-						<p class="darkT big bold mont">App 개발</span></p>
-						<p class="darkT mid ligt pret">앱을 만들 수 있는 Android Studio, React를 배우고<br>직접 개발합니다.</p>
-					</div>
-				</div>
-				<div class="cur">
-					<img src="img/www.png" alt="web" />
-					<div>
-						<p class="darkT big bold mont">WEB 개발</span></p>
-						<p class="darkT mid ligt pret">웹의 기본인 HTML과 CSS를 배우고<br>Figma를 이용해 UI 디자인을 합니다.</p>
-					</div>
-				</div>
-				<div class="cur">
-					<img src="img/unity.png" alt="web" />
-					<div>
-						<p class="darkT big bold mont">게임 개발</span></p>
-						<p class="darkT mid ligt pret">Unity를 배우고 스토리 구상으로<br>동아리 오리지널 게임을 개발합니다.</p>
-					</div>
-				</div>
-				<div class="cur">
-					<img src="img/data.png" alt="web" />
-					<div>
-						<p class="darkT big bold mont">데이터 분석</span></p>
-						<p class="darkT mid ligt pret">흥미로운 주제의 다양한 데이터들을 모아<br>데이터 시각화 및 분석을 합니다.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="page portfolio-t">
-			<p class="darkT bigl bold mont tacen">It is IT의<br>작년 활동이 궁금해요!</p>
-			<p class="darkT mid pret tacen">아래는 2023년 진행한 프로젝트입니다.</p>
-		</div>
-		<div class="page portfolio">
-			<div class="port-img port1">
-				<div class="port">
-					<p class="port-title mont mid bold">Mango</p>
-					<p class="port-content pret">저현고 학생을 위한 정보사이트</p>
-					<a class="port-link" target="_blank"
-						href="https://drive.google.com/file/d/1dQLFoz8aflUjJFd2mhPsfvNEKoGLm8-X/view?usp=sharing">View</a>
-				</div>
-			</div>
-			<div class="port-img port2">
-				<div class="port">
-					<p class="port-title mont mid bold">Slime Story</p>
-					<p class="port-content pret">It is IT 오리지널 게임</p>
-					<a class="port-link" target="_blank" href="https://youtu.be/HPFSFxngrrg">View</a>
-				</div>
-			</div>
-			<div class="port-img port3">
-				<div class="port">
-					<p class="port-title mont mid bold">데이터 분석</p>
-					<p class="port-content pret">저현고등학교 맞춤 데이터 분석</p>
-					<a class="port-link" target="_blank"
-						href="https://drive.google.com/drive/folders/1zcnMVGmdtrMDEutmKJXBRLMu--A0m_JJ?usp=sharing">View</a>
-				</div>
-			</div>
-		</div>
-		<div class="page curriculum-t">
-			<p class="darkT bigl bold mont tacen">올해는 어떻게 진행하나요?</p>
-			<p class="darkT mid pret tacen">1학기 초에 간단한 프로젝트 탐색 활동 후<br>남은 차시 동안 "조별 프로젝트"를 진행합니다<br><br>총 10차시로 진행할
-				예정입니다.</p>
-		</div>
-		<div class="page curriculum">
-			<div class="curri-box-wrap">
-				<div class="curri-box">
-					<p class="darkT mid bold mont tacen">1차시: OT</p><br>
-					<h4 class="darkT smls pret tacen">OT를 진행합니다.<br><br>
-						선후배의 이름을 외우고 친목을 도모할 수 있는 자리입니다.</h4><br>
-				</div>
-				<div class="curri-box">
-					<p class="darkT mid bold mont tacen">2차치: 활동 탐구 1</p><br>
-					<h4 class="darkT smls pret tacen">작년 게임 분야 개발팀이 어떤 프로젝트를 진행했는지 소개합니다.<br>
-						또한, 유니티로 아주 간단한 게임을 직접 만들어보는 활동을 진행합니다.</h4><br>
-				</div>
-				<div class="curri-box">
-					<p class="darkT mid bold mont tacen">3차시: 활동 탐구 2</p><br>
-					<h4 class="darkT smls pret tacen">작년 웹 개발, 데이터 분석 분야 팀이 진행한 프로젝트를 소개합니다.<br>
-						또한, Square space를 이용한 간단한 웹페이지 만들기와 영화 평점 데이터 분석을 체험합니다.</h4><br>
-				</div>
-				<div class="curri-box">
-					<p class="darkT mid bold mont tacen">4차시: 주제 찾기 & 조 짜기</p><br>
-					<h4 class="darkT smls pret tacen">1학기 동안 진행할 프로젝트의 주제를 모색합니다.<br>
-						같이 프로젝트를 진행할 팀원 또한 구합니다.</h4><br>
-				</div>
-				<div class="curri-box">
-					<p class="darkT mid bold mont tacen">5~6차시: 조 별 공부</p><br>
-					<h4 class="darkT smls pret tacen">각 조가 진행할 프로젝트와 관련된 심화 공부를 합니다.</h4><br>
-				</div>
-				<div class="curri-box">
-					<p class="darkT mid bold mont tacen">7~9차시: 프로젝트 활동</p><br>
-					<h4 class="darkT smls pret tacen">조 별로 프로젝트를 진행합니다.</h4><br>
-				</div>
-				<div class="curri-box">
-					<p class="darkT mid bold mont tacen">10차시: 프로젝트 소개 & 학술제 준비</p><br>
-					<h4 class="darkT smls pret tacen">다른 팀이 만든 프로젝트에 대해 알아보고 개선할 점에 대하여 이야기를 나눕니다.</h4><br>
-				</div>
-			</div>
-		</div>
-		<div class="page application" id="apply">
-			<p class="darkT bigl bold mont tacen">지원은 어디서 하나요?</p>
-			<!-- <a href="https://forms.gle/czXNwXs6anGpLDTcA" target="_blank" class="aplic-link mid bold pret">지원하러 가기<br>(반드시 학교계정으로 로그인 해 주세요!)</a> -->
-			<a onclick="alert('지금은 모집 기간이 아닙니다.')" target="_blank" class="aplic-link mid bold pret">지원하러 가기<br>(반드시 학교계정으로 로그인 해 주세요!)</a>
-		</div>
-		<div class="page contact darkB">
-			<p class="whiteT bigl bold mont tacen">Contact</p>
-			<a href="https://www.instagram.com/jeohyeon_itisit/" target="_blank" class="whiteT mid mont tacen"><i
-					class="fa-brands fa-instagram"></i> @jeohyeon_itisit</a>
-			<a href="tel:01085979775" target="_blank" class="whiteT mid mont tacen"><i class="fa-solid fa-phone"></i>
-				010-8597-9775 (부장 김경래)</a>
-			<p class="whiteT pret smls tacen">경기도 고양시 일산동구 위시티 3로 37</p>
-			<p class="whiteT pret smls tacen">Copyright &copy; by It is IT All Right Reserved</p>
-		</div>
-		<div class="contact darkB">
-			<p class="whiteT pret smls tacen" style="font-size: 7px;text-align: left;">이 웹사이트의 아이콘 중 일부는 <a
-					href="https://icons8.com/">icons8.com</a> 에서 가져왔습니다.</p>
-		</div>
-	</div>
+    <!-- 메인 컨테이너 - 전체 웹 페이지 내용을 감싸는 요소 -->
+    <div class="app">
+        <!-- 섹션 1: 인트로 - 로고와 기본 소개 -->
+        <section class="page intro">
+            <!-- 동아리 로고 및 이름 -->
+            <p class="darkT bigxl bold mont logo">
+                <img src="img/logo-removebg.png" alt="It is IT 로고" class="logo-img" />
+                It is IT
+            </p>
+            
+            <!-- 동아리 설명 (저현고등학교 정보공학연구소) -->
+            <p class="darkT big pret logo-des">저현고등학교 정보공학연구소</p>
+            
+            <!-- 신청 링크 버튼 -->
+            <a href="#" id="apply-button" class="darkT mid pret logo-des aplic-link">신청 바로가기</a>
+        </section>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
-	<script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
-	<script src="main.js"></script>
-	<script>
-		// 로고 애니메이션 추가
+        <!-- 섹션 2: 동아리 소개 - 동아리의 주요 설명 -->
+        <section class="page duction">
+            <!-- 동아리 이름 -->
+            <p class="darkT bigl bold mont">It is IT</p>
+            
+            <!-- 설명 제목 -->
+            <p class="darkT big bold mont">어떤 동아리 인가요?</p>
+            
+            <!-- 동아리 소개 내용 본문 -->
+            <p class="darkT mid pret tacen responsive-text" style="line-height: 2em;">
+                명실상부 저현고등학교 최고의 IT 동아리<span class="mobile-break"></span>
+                " <span class="bold mont">It is IT</span> " 는 인공지능 모델 플랫폼과<span class="mobile-break"></span>
+                프로그래밍 언어를 학습 및 활용하여<span class="mobile-break"></span>
+                다양한 문제를 탐구 및 해결하는 동아리입니다
+            </p>
+        </section>
 
-		window.sr = ScrollReveal({ reset: true });
+        <!-- 섹션 3: 동아리 자랑 - 성과 및 특징 소개 -->
+        <section class="page pride">
+            <!-- 섹션 제목 (동아리 자랑 - 특수 레이아웃 적용) -->
+            <div class="PR-title" style="width: 100%; display: flex; flex-direction: row;">
+                <p class="PR1 bigl mont">동아리</p>
+                <p class="darkT bigl bold mont">'자랑'</p>
+                <p class="PR2 bigl mont">이라면</p>
+            </div>
+            
+            <!-- 동아리 주요 성과 리스트 -->
+            <p class="darkT mid regu mont" style="text-align:center; line-height: 2em; margin-bottom: 20px;">
+                &lt;3년 연속 저현고등학교 '우수 동아리' 선정&gt;<br>
+                &lt;2024년 SW동행 데모데이 1팀 대상, 2팀 장려상&gt;<br>
+                &lt;교내 유일 '컴퓨터실 독점'&gt;<br>
+                &lt;삼성 주니어 SW 아카데미 '2년 연속' 발탁&gt;<br>
+                &lt;Microsoft Azure Empowerment Project 선정&gt;<br>
+                &lt;'비버 챌린지' 시행 및 운영진 참여&gt;<br>
+                &lt;저현고등학교 '최대 크기 및 유일' 순수 공학 동아리&gt;
+            </p>
+            
+            <!-- 섹션 마무리 메시지 -->
+            <p class="darkT big bold mont">이정도가 되시겠다~</p>
+        </section>
 
-		// sr.reveal(".page1", {
-		// 	origin: "top",
-		// 	duration: 500,
-		// 	distance: "200px",
-		// });
+        <!-- 섹션 4: 교육 내용 - 배우는 내용 소개 -->
+        <section class="page curriculum1">
+            <!-- 섹션 제목 -->
+            <p class="darkT bigl bold mont tacen">It is IT에서는<br>무엇을 배우나요?</p>
+            <p class="darkT mid pret tacen">크게 아래 내용으로 진행 됩니다.</p>
+            
+            <!-- 커리큘럼 항목 컨테이너 - 4개의 교육 분야 소개 -->
+            <div class="curs">
+                <!-- 항목 1: 앱 개발 -->
+                <div class="cur">
+                    <img src="img/app.png" alt="앱 개발 아이콘" />
+                    <div>
+                        <p class="darkT big bold mont">App 개발</p>
+                        <p class="darkT mid ligt pret">앱을 만들 수 있는 Android Studio, React를 배우고<br>직접 개발합니다.</p>
+                    </div>
+                </div>
+                
+                <!-- 항목 2: 웹 개발 -->
+                <div class="cur">
+                    <img src="img/www.png" alt="웹 개발 아이콘" />
+                    <div>
+                        <p class="darkT big bold mont">WEB 개발</p>
+                        <p class="darkT mid ligt pret">웹의 기본인 HTML과 CSS를 배우고<br>Figma를 이용해 UI 디자인을 합니다.</p>
+                    </div>
+                </div>
+                
+                <!-- 항목 3: 게임 개발 -->
+                <div class="cur">
+                    <img src="img/unity.png" alt="Unity 게임 개발 아이콘" />
+                    <div>
+                        <p class="darkT big bold mont">게임 개발</p>
+                        <p class="darkT mid ligt pret">Unity를 배우고 스토리 구상으로<br>동아리 오리지널 게임을 개발합니다.</p>
+                    </div>
+                </div>
+                
+                <!-- 항목 4: 데이터 분석 -->
+                <div class="cur">
+                    <img src="img/data.png" alt="데이터 분석 아이콘" />
+                    <div>
+                        <p class="darkT big bold mont">데이터 분석</p>
+                        <p class="darkT mid ligt pret">흥미로운 주제의 다양한 데이터들을 모아<br>데이터 시각화 및 분석을 합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 섹션 5: 실적 소개 헤더 - 주요 성과 소개 -->
+        <section class="page achievements-header">
+            <!-- 섹션 제목 -->
+            <p class="darkT bigl bold mont tacen">It is IT의<br>주요 실적</p>
+            <p class="darkT mid pret tacen">2024년 우리 동아리의 주요 성과입니다.</p>
+        </section>
+        
+        <!-- 섹션 6: 실적 카드 - 주요 프로젝트 및 성과 상세 -->
+        <section class="page achievements">
+            <!-- 실적 아이템 컨테이너 - 6개 프로젝트 카드 -->
+            <div class="achievements-container">
+                <!-- 실적 1: SW동행 데모데이 대상 -->
+                <div class="achievement-item">
+                    <div class="achievement-img">
+                        <img src="img/achievement1.jpg" alt="SW동행 데모데이 대상" class="achievement-thumbnail">
+                    </div>
+                    <div class="achievement-content">
+                        <p class="darkT big bold mont">SW동행 데모데이 대상</p>
+                        <p class="darkT mid pret">독수리와 오형제</p>
+                        <a href="https://github.com/gmts117/BinaryEncrypt" target="_blank" class="achievement-link">프로젝트 보기</a>
+                    </div>
+                </div>
+                
+                <!-- 실적 2: SW동행 데모데이 장려상 -->
+                <div class="achievement-item">
+                    <div class="achievement-img">
+                        <img src="img/achievement2.jpg" alt="SW동행 데모데이 장려상" class="achievement-thumbnail">
+                    </div>
+                    <div class="achievement-content">
+                        <p class="darkT big bold mont">SW동행 데모데이 장려상</p>
+                        <p class="darkT mid pret">HydroFuture</p>
+                        <a href="https://github.com/gmts117/bongo-backgroung" target="_blank" class="achievement-link">프로젝트 보기</a>
+                    </div>
+                </div>
+                
+                <!-- 실적 3: SW동행 데모데이 장려상 -->
+                <div class="achievement-item">
+                    <div class="achievement-img">
+                        <img src="img/achievement3.jpg" alt="SW동행 데모데이 장려상" class="achievement-thumbnail">
+                    </div>
+                    <div class="achievement-content">
+                        <p class="darkT big bold mont">SW동행 데모데이 장려상</p>
+                        <p class="darkT mid pret">Hanullim</p>
+                        <a href="https://github.com/gmts117/Hanullim" target="_blank" class="achievement-link">프로젝트 보기</a>
+                    </div>
+                </div>
+                
+                <!-- 실적 4: 게임 개발 프로젝트 -->
+                <div class="achievement-item">
+                    <div class="achievement-img">
+                        <img src="img/achievement4.jpg" alt="게임 개발" class="achievement-thumbnail">
+                    </div>
+                    <div class="achievement-content">
+                        <p class="darkT big bold mont">게임 개발 프로젝트</p>
+                        <p class="darkT mid pret">1학년 게임</p>
+                        <a href="https://github.com/gmts117/2P-ShootingGame" target="_blank" class="achievement-link">프로젝트 보기</a>
+                    </div>
+                </div>
+                
+                <!-- 실적 5: 게임 개발 프로젝트 -->
+                <div class="achievement-item">
+                    <div class="achievement-img">
+                        <img src="img/achievement5.jpg" alt="게임 개발" class="achievement-thumbnail">
+                    </div>
+                    <div class="achievement-content">
+                        <p class="darkT big bold mont">게임 개발 프로젝트</p>
+                        <p class="darkT mid pret">홍지호 게임</p>
+                        <a href="https://github.com/gmts117/dup_remover" target="_blank" class="achievement-link">프로젝트 보기</a>
+                    </div>
+                </div>
+                
+                <!-- 실적 6: 보안 취약점 분석 -->
+                <div class="achievement-item">
+                    <div class="achievement-img">
+                        <img src="img/achievement6.jpg" alt="학교 사이트 취약점 발견" class="achievement-thumbnail">
+                    </div>
+                    <div class="achievement-content">
+                        <p class="darkT big bold mont">보안 취약점 분석</p>
+                        <p class="darkT mid pret">학교 수강신청 웹 취약점</p>
+                        <a href="https://docs.google.com/document/d/1fG3WJQwWp7yr-YLr2FDpHE0SOnphsF6WtInOK_ph0p8/edit?tab=t.0#heading=h.1ajxiza5ed9l" target="_blank" class="achievement-link">보고서 보기</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 섹션 7: 커리큘럼 소개 헤더 - 연간 계획 개요 -->
+        <section class="page curriculum-header">
+            <!-- 섹션 제목 -->
+            <p class="darkT bigl bold mont tacen">올해는 어떻게 진행하나요?</p>
+            
+            <!-- 커리큘럼 운영 방식 설명 -->
+            <p class="darkT mid pret tacen responsive-text">
+                <span class="text-chunk">1학기 초에 간단한 프로젝트 탐색 활동 후</span>
+                <span class="text-chunk">남은 차시 동안 "조별 프로젝트"를 진행합니다</span>
+                <span class="text-spacer"></span>
+                <span class="text-chunk">총 10차시로 진행할 예정입니다.</span>
+            </p>
+        </section>
 
-		sr.reveal(".logo-img", {
-			origin: "top",
-			duration: 500,
-			distance: "200px",
-		});
+        <!-- 섹션 8: 커리큘럼 상세 - 각 차시별 활동 소개 -->
+        <section class="page curriculum">
+            <!-- 커리큘럼 박스 컨테이너 - 전체 10차시 활동 소개 -->
+            <div class="curri-box-wrap">
+                <!-- 1차시: OT -->
+                <div class="curri-box">
+                    <p class="darkT mid bold mont tacen">1차시: OT</p><br>
+                    <h4 class="darkT smls pret tacen">
+                        OT를 진행합니다.<br><br>
+                        선후배의 이름을 외우고 친목을 도모할 수 있는 자리입니다.
+                    </h4><br>
+                </div>
+                
+                <!-- 2차시: 활동 탐구 1 - 게임 개발 관련 -->
+                <div class="curri-box">
+                    <p class="darkT mid bold mont tacen">2차시: 활동 탐구 1</p><br>
+                    <h4 class="darkT smls pret tacen">
+                        작년 게임 분야 개발팀이 어떤 프로젝트를 진행했는지 소개합니다.<br>
+                        또한, 유니티로 아주 간단한 게임을 직접 만들어보는 활동을 진행합니다.
+                    </h4><br>
+                </div>
+                
+                <!-- 3차시: 활동 탐구 2 - 웹 개발 및 데이터 분석 관련 -->
+                <div class="curri-box">
+                    <p class="darkT mid bold mont tacen">3차시: 활동 탐구 2</p><br>
+                    <h4 class="darkT smls pret tacen">
+                        작년 웹 개발, 데이터 분석 분야 팀이 진행한 프로젝트를 소개합니다.<br>
+                        또한, Square space를 이용한 간단한 웹페이지 만들기와 영화 평점 데이터 분석을 체험합니다.
+                    </h4><br>
+                </div>
+                
+                <!-- 4차시: 주제 찾기 & 조 짜기 -->
+                <div class="curri-box">
+                    <p class="darkT mid bold mont tacen">4차시: 주제 찾기 & 조 짜기</p><br>
+                    <h4 class="darkT smls pret tacen">
+                        1학기 동안 진행할 프로젝트의 주제를 모색합니다.<br>
+                        같이 프로젝트를 진행할 팀원 또한 구합니다.
+                    </h4><br>
+                </div>
+                
+                <!-- 5~6차시: 조 별 공부 -->
+                <div class="curri-box">
+                    <p class="darkT mid bold mont tacen">5~6차시: 조 별 공부</p><br>
+                    <h4 class="darkT smls pret tacen">
+                        각 조가 진행할 프로젝트와 관련된 심화 공부를 합니다.
+                    </h4><br>
+                </div>
+                
+                <!-- 7~9차시: 프로젝트 활동 -->
+                <div class="curri-box">
+                    <p class="darkT mid bold mont tacen">7~9차시: 프로젝트 활동</p><br>
+                    <h4 class="darkT smls pret tacen">
+                        조 별로 프로젝트를 진행합니다.
+                    </h4><br>
+                </div>
+                
+                <!-- 10차시: 프로젝트 소개 & 학술제 준비 -->
+                <div class="curri-box">
+                    <p class="darkT mid bold mont tacen">10차시: 프로젝트 소개 & 학술제 준비</p><br>
+                    <h4 class="darkT smls pret tacen">
+                        다른 팀이 만든 프로젝트에 대해 알아보고 개선할 점에 대하여 이야기를 나눕니다.
+                    </h4><br>
+                </div>
+            </div>
+        </section>
 
-		sr.reveal(".logo", {
-			origin: "right",
-			duration: 500,
-			distance: "200px",
-		});
+        <!-- 섹션 9: 지원 섹션 - 지원 방법 안내 -->
+        <section class="page application" id="apply">
+            <p class="darkT bigl bold mont tacen">지원은 어디서 하나요?</p>
+            <a href="#" id="main-apply-button" class="aplic-link mid bold pret">신청 바로가기</a>
+        </section>
 
-		sr.reveal(".logo-des", {
-			origin: "bottom",
-			duration: 500,
-			distance: "200px",
-		});
+        <!-- 섹션 10: 연락처 섹션 - 문의 및 연락 정보 (어두운 배경) -->
+        <section class="page contact darkB">
+            <p class="whiteT bigl bold mont tacen">Contact</p>
+            
+            <!-- 인스타그램 링크 -->
+            <a href="https://www.instagram.com/jeohyeon_itisit/" target="_blank" class="whiteT mid mont tacen">
+                <i class="fa-brands fa-instagram"></i> @jeohyeon_itisit
+            </a>
+            
+            <!-- 연락처 전화번호 -->
+            <a href="tel:010-5535-2891" target="_blank" class="whiteT mid mont tacen">
+                <i class="fa-solid fa-phone"></i> 010-5535-2891 (부장 장주형)
+            </a>
+            
+            <!-- 학교 주소 -->
+            <p class="whiteT pret smls tacen">경기도 고양시 일산동구 위시티 3로 37</p>
+            
+            <!-- 저작권 정보 -->
+            <p class="whiteT pret smls tacen">Copyright &copy; by It is IT All Right Reserved</p>
+        </section>
 
-		// It has been a hard day
-	</script>
+        <!-- 푸터 섹션 - 얇은 라인으로 표시 (어두운 배경 유지) -->
+        <div class="footer-thin darkB">
+            <p class="whiteT pret smlxs">이 웹사이트의 아이콘 중 일부는 <a href="https://icons8.com/" class="whiteT no-hover">icons8.com</a> 에서 가져왔습니다.</p>
+        </div>
+    </div>
+
+    <!-- 외부 스크립트 로드 섹션 -->
+    <!-- 1. GSAP 애니메이션 라이브러리 - 애니메이션 효과 구현 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+    
+    <!-- 2. ScrollReveal 라이브러리 - 스크롤 애니메이션 효과 구현 -->
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    
+    <!-- 3. 메인 자바스크립트 파일 - 사이트 기능 구현 -->
+    <script src="main.js"></script>
+    
+    <!-- 인라인 스크립트: 스크롤 애니메이션 설정 -->
+    <script>
+        // ScrollReveal 초기화 - 페이지 스크롤시 요소들이 나타나는 애니메이션 설정
+        window.sr = ScrollReveal({ reset: true });
+
+        // 로고 이미지 애니메이션: 위에서 아래로 내려오는 효과
+        sr.reveal(".logo-img", {
+            origin: "top",          // 시작 위치: 상단
+            duration: 500,          // 애니메이션 시간(ms)
+            distance: "200px",      // 이동 거리
+        });
+
+        // 로고 텍스트 애니메이션: 오른쪽에서 왼쪽으로 이동
+        sr.reveal(".logo", {
+            origin: "right",        // 시작 위치: 오른쪽
+            duration: 500,          // 애니메이션 시간(ms)
+            distance: "200px",      // 이동 거리
+        });
+
+        // 로고 설명 애니메이션: 아래에서 위로 올라오는 효과
+        sr.reveal(".logo-des", {
+            origin: "bottom",       // 시작 위치: 하단
+            duration: 500,          // 애니메이션 시간(ms)
+            distance: "200px",      // 이동 거리
+        });
+        
+        // 자랑 섹션 제목 애니메이션: 왼쪽에서 오른쪽으로 이동
+        sr.reveal(".PR-title", {
+            origin: "left",         // 시작 위치: 왼쪽
+            duration: 500,          // 애니메이션 시간(ms)
+            distance: "100px",      // 이동 거리
+        });
+        
+        // 교육 내용 항목 애니메이션: 순차적으로 아래에서 위로 
+        sr.reveal(".cur", {
+            origin: "bottom",       // 시작 위치: 하단
+            duration: 500,          // 애니메이션 시간(ms)
+            distance: "50px",       // 이동 거리
+            interval: 200           // 각 항목 간 시간 간격(ms)
+        });
+        
+        // 실적 아이템 애니메이션: 순차적으로 아래에서 위로
+        sr.reveal(".achievement-item", {
+            origin: "bottom",       // 시작 위치: 하단
+            duration: 500,          // 애니메이션 시간(ms)
+            distance: "50px",       // 이동 거리
+            interval: 200           // 각 항목 간 시간 간격(ms)
+        });
+        
+        // 커리큘럼 박스 애니메이션: 오른쪽에서 왼쪽으로 순차적 이동
+        sr.reveal(".curri-box", {
+            origin: "right",        // 시작 위치: 오른쪽
+            duration: 500,          // 애니메이션 시간(ms)
+            distance: "50px",       // 이동 거리
+            interval: 100           // 각 항목 간 시간 간격(ms)
+        });
+    </script>
 </body>
 
 </html>
