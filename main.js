@@ -103,7 +103,7 @@ function setupButtonEvents() {
   if (mainApplyButton) {
     mainApplyButton.addEventListener('click', function(event) {
       event.preventDefault();
-      const applicationUrl = "https://www.youtube.com/channel/UC8qO5racajmy4YgPgNJkVXg";
+      const applicationUrl = "https://forms.gle/UgucYhfGQ23WXC1V8";
       
       showCustomAlert("반드시 학교계정으로 로그인 해 주세요!", function() {
         window.open(applicationUrl, '_blank');
