@@ -7,18 +7,103 @@
    ========================================================================== */
    @font-face {
     font-family: 'MBC1961M';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961M.woff2')
-      format('woff2');
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961M.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
+    font-display: swap; /* 폰트 로딩 최적화 */
+  }
+  
+  /* 그리드 레이아웃 지원 확인 */
+  @supports (display: grid) {
+    @media (min-width: 768px) {
+      .achievements-container,
+      .projects-container {
+        display: grid;
+        grid-gap: 30px;
+        justify-items: center;
+      }
+      
+      .achievement-item,
+      .project-item {
+        width: 100%;
+        max-width: 330px; 
+        height: 100%;
+        margin: 0;
+      }
+    }
+  }
+  
+  /* 반응형 텍스트 패턴 */
+  .responsive-text .mobile-break {
+    display: block;
+    height: 0.8em;
+  }
+  
+  @media (min-width: 701px) {
+    .responsive-text .mobile-break {
+      display: none;
+    }
+    
+    .responsive-text .text-chunk::after {
+      content: '\A';
+      white-space: pre;
+    }
+    
+    .responsive-text .text-spacer {
+      display: block;
+      height: 1em;
+    }
+  }
+  
+  @media (max-width: 700px) {
+    .responsive-text .text-spacer {
+      display: block;
+      height: 1.5em;
+    }
+    
+    .responsive-text .text-chunk {
+      display: inline-block;
+    }
+  }
+  
+  /* 브라우저별 특수 처리 */
+  @supports (-webkit-overflow-scrolling: touch) {
+    /* iOS 기기 특수 처리 */
+    .curri-box {
+      -webkit-transform: translateZ(0);
+    }
+  }
+  
+  @supports (-moz-appearance: none) {
+    /* Firefox 특수 처리 */
+    .curri-box {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
+  /* 삼성 인터넷 브라우저 특수 처리 */
+  @supports (-webkit-hyphens: none) and (not (-ms-accelerator: true)) {
+    .curri-box {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+  
+  /* 새로고침 후 특수 처리된 박스 */
+  .curri-box.reloaded {
+    animation: stabilize 0.1s ease forwards;
+  }
+  
+  /* 가시 영역에 들어온 박스 특수 처리 */
+  .curri-box.visible {
+    transform: translateZ(0);
   }
   
   @font-face {
     font-family: 'SokchoBadaDotum';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/SokchoBadaDotum.woff2')
-      format('woff2');
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/SokchoBadaDotum.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
+    font-display: swap; /* 폰트 로딩 최적화 */
   }
   
   /* ==========================================================================
@@ -46,13 +131,9 @@
   /* ==========================================================================
      3. 타이포그래피 유틸리티 클래스
      ========================================================================== */
-  /* 폰트 패밀리 */
+  /* 폰트 패밀리, 정렬, 색상 */
   .mont, .pret { font-family: SokchoBadaDotum; }
-  
-  /* 텍스트 정렬 */
   .tacen { text-align: center; }
-  
-  /* 텍스트 및 배경 색상 */
   .whiteT { color: #dadfee; }
   .darkT { color: #646464; }
   .darkB { background: #646464; }
@@ -134,15 +215,8 @@
     color: transparent;
   }
   
-  .PR1 {
-    margin-right: auto;
-    margin-left: 5%;
-  }
-  
-  .PR2 {
-    margin-left: auto;
-    margin-right: 5%;
-  }
+  .PR1 { margin-right: auto; margin-left: 5%; }
+  .PR2 { margin-left: auto; margin-right: 5%; }
   
   /* ==========================================================================
      7. 커리큘럼 스타일
@@ -179,9 +253,7 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
   }
   
-  .cur p {
-    word-break: keep-all;
-  }
+  .cur p { word-break: keep-all; }
   
   .cur img {
     height: 80px;
@@ -194,7 +266,7 @@
   .curriculum {
     padding: 2rem 5%;
     min-height: auto;
-    contain: layout; /* 레이아웃 컨테인먼트 적용 */
+    contain: layout;
   }
   
   /* 커리큘럼 박스 그리드 레이아웃 */
@@ -236,24 +308,30 @@
      ========================================================================== */
   /* 실적 항목 컨테이너 */
   .achievements-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px 30px;
     width: 100%;
     max-width: 1200px;
+    margin-bottom: 40px;
+    padding: 20px;
   }
   
   /* 실적 항목 - 각 프로젝트 카드 */
   .achievement-item {
+    position: relative;
     display: flex;
     flex-direction: column;
-    width: 300px;
-    border-radius: 10px;
+    width: 100%;
+    max-width: 330px;
+    min-height: 360px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    background-color: #f8f8f8;
+    background-color: #ffffff;
+    margin: 0 auto;
+    justify-content: flex-start;
   }
   
   .achievement-item:hover {
@@ -265,7 +343,10 @@
   .achievement-img {
     width: 100%;
     height: 180px;
+    min-height: 180px;
     overflow: hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
   }
   
   /* 실적 썸네일 이미지 */
@@ -289,6 +370,8 @@
     align-items: center;
     text-align: center;
     gap: 0.8rem;
+    flex-grow: 1;
+    background-color: #ffffff;
   }
   
   /* 실적 링크 버튼 */
@@ -329,13 +412,8 @@
     transform: translateY(-3px);
   }
   
-  .contact i {
-    margin-right: 0.5rem;
-  }
-  
-  .contact p {
-    margin-bottom: 0.5rem;
-  }
+  .contact i { margin-right: 0.5rem; }
+  .contact p { margin-bottom: 0.5rem; }
   
   /* 얇은 푸터 스타일 */
   .footer-thin {
@@ -377,7 +455,7 @@
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
     -webkit-tap-highlight-color: transparent;
   }
   
@@ -462,30 +540,251 @@
   }
   
   /* ==========================================================================
-     12. 반응형 디자인 (통합된 미디어 쿼리)
+     12. 메달 및 빛나는 효과
      ========================================================================== */
+  /* 메달 리본 스타일 */
+  .medal-ribbon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+    color: white;
+    padding: 6px 12px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    z-index: 5;
+    border-bottom-left-radius: 10px;
+    box-shadow: -2px 2px 5px rgba(0,0,0,0.2);
+    transform: translateZ(0);
+  }
   
-  /* 태블릿 크기 (800px 이하) */
-  @media (max-width: 800px) {
-    .cur {
-      width: 90%;
-      flex-direction: column;
-      text-align: center;
-      padding: 1rem;
+  /* 메달 텍스트 스타일 */
+  .medal-text {
+    display: inline-block;
+    font-family: 'SokchoBadaDotum', sans-serif;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+  
+  /* 금메달 효과 */
+  .medal-gold .medal-ribbon {
+    background: linear-gradient(135deg, #ffc500 0%, #ff8c00 100%);
+    border: 1px solid #ffd700;
+  }
+  
+  .medal-gold .medal-text {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(120,80,0,0.9);
+    font-weight: 800;
+  }
+  
+  /* 동메달 효과 */
+  .medal-bronze .medal-ribbon {
+    background: linear-gradient(135deg, #CD7F32 0%, #ffac47 100%);
+    border: 1px solid #ff8e1c;
+  }
+  
+  .medal-bronze .medal-text {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(80,40,0,0.9);
+    font-weight: 800;
+  }
+  
+  /* 빛나는 효과 요소 */
+  .shine-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+      rgba(255,255,255,0) 0%, 
+      rgba(255,255,255,0) 45%, 
+      rgba(255,255,255,0.7) 50%, 
+      rgba(255,255,255,0) 55%, 
+      rgba(255,255,255,0) 100%);
+    background-size: 200% 200%;
+    animation: shine 3s infinite linear;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  /* 메달이 있는 아이템 스타일 */
+  .medal-gold {
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4), 0 0 5px rgba(255, 215, 0, 0.3);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .medal-bronze {
+    border: 2px solid rgba(205, 127, 50, 0.6);
+    box-shadow: 0 4px 15px rgba(205, 127, 50, 0.4), 0 0 5px rgba(205, 127, 50, 0.3);
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* 메달 항목 호버 효과 */
+  .medal-gold:hover {
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5), 0 0 12px rgba(255, 215, 0, 0.4);
+    transform: translateY(-8px) scale(1.02);
+  }
+  
+  .medal-bronze:hover {
+    box-shadow: 0 8px 25px rgba(205, 127, 50, 0.5), 0 0 12px rgba(205, 127, 50, 0.4);
+    transform: translateY(-8px) scale(1.02);
+  }
+  
+  /* 파티클 효과 */
+  .medal-gold::before,
+  .medal-gold::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 215, 0, 0.9);
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.8), 0 0 5px rgba(255, 165, 0, 0.6);
+    animation: particles 3s infinite ease-in-out;
+    opacity: 0;
+    z-index: 3;
+  }
+  
+  .medal-gold::before {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0.5s;
+  }
+  
+  .medal-gold::after {
+    bottom: 30%;
+    right: 15%;
+    animation-delay: 1.5s;
+  }
+  
+  /* ==========================================================================
+     13. 프로젝트 섹션 스타일
+     ========================================================================== */
+  /* 프로젝트 섹션 기본 스타일 */
+  .projects-section {
+    padding-top: 30px;
+    min-height: auto;
+    margin-top: 50px;
+    position: relative;
+  }
+  
+  /* 프로젝트 컨테이너 */
+  .projects-container {
+    margin-top: 30px;
+  }
+  
+  /* 프로젝트 아이템 카드 스타일 */
+  .project-item {
+    opacity: 1;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* 프로젝트 이미지 컨테이너 */
+  .project-item .achievement-img {
+    background-color: #f0f0f0;
+  }
+  
+  /* 프로젝트 내용 스타일 */
+  .project-item .achievement-content {
+    background-color: #f8f9fa;
+  }
+  
+  /* 섹션 제목 스타일 */
+  .section-title {
+    margin-bottom: 20px;
+    padding: 0 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* 구분선 스타일 */
+  .section-divider {
+    height: 2px;
+    width: 80%;
+    max-width: 800px;
+    margin: 40px auto;
+    background: linear-gradient(to right, transparent, #646464, transparent);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section-divider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(100, 100, 100, 0.5), transparent);
+    animation: shimmer 2s infinite linear;
+  }
+  
+  /* 페이지 스타일 */
+  .page.achievements {
+    padding-bottom: 70px;
+    margin-bottom: 30px;
+    min-height: auto;
+    height: auto;
+  }
+  
+  /* ==========================================================================
+     14. 반응형 미디어 쿼리 (최적화)
+     ========================================================================== */
+  /* 애니메이션 정의 */
+  @keyframes shine {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  @keyframes particles {
+    0% {
+      transform: scale(0);
+      opacity: 0;
     }
-    
-    .cur img {
-      margin-bottom: 1rem;
+    20% {
+      opacity: 0.8;
     }
-    
-    .achievement-item {
-      width: 260px;
+    50% {
+      transform: scale(1.5) translateY(-10px);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(0);
+      opacity: 0;
     }
   }
   
-  /* 모바일 기기 공통 (700px 이하) */
-  @media (max-width: 700px) {
-    /* 텍스트 줄바꿈 및 레이아웃 최적화 */
+  @keyframes shimmer {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+  
+  @keyframes stabilize {
+    0% { opacity: 0.99; }
+    100% { opacity: 1; }
+  }
+  
+  /* 모바일 및 태블릿 공통 */
+  @media (max-width: 767px) {
+    /* 텍스트 및 레이아웃 */
     .page p {
       width: 100%;
       word-break: keep-all;
@@ -500,10 +799,8 @@
       margin-right: auto;
     }
     
-    /* 중요 문장에 줄바꿈 힌트 추가 */
-    .duction .darkT.mid.pret.tacen br {
-      display: none;
-    }
+    /* 텍스트 줄바꿈 */
+    .duction .darkT.mid.pret.tacen br { display: none; }
     
     .duction .darkT.mid.pret.tacen {
       line-height: 1.8;
@@ -515,11 +812,60 @@
       white-space: pre-wrap;
     }
     
-    .mid, .smls {
-      min-width: 0;
+    /* 실적 및 프로젝트 섹션 */
+    .page.achievements,
+    .page.projects-section {
+      padding: 40px 15px;
+      margin-bottom: 0;
     }
     
-    /* 레이아웃 최적화 - 그리드 적용 */
+    /* 컨테이너 */
+    .achievements-container,
+    .projects-container {
+      gap: 40px 20px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+      padding: 5px;
+    }
+    
+    /* 아이템 */
+    .achievement-item,
+    .project-item {
+      width: 100%;
+      min-height: 320px;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+    
+    .achievement-img {
+      height: 150px;
+      min-height: 150px;
+    }
+    
+    .achievement-content {
+      padding: 1.2rem;
+    }
+    
+    /* 메달 */
+    .medal-ribbon {
+      padding: 4px 10px;
+      font-size: 0.7rem;
+    }
+    
+    /* 구분선 */
+    .section-divider {
+      margin: 25px auto;
+      width: 90%;
+    }
+    
+    /* 섹션 제목 */
+    .section-title {
+      margin-bottom: 15px;
+    }
+    
+    /* 커리큘럼 */
     .curs {
       display: grid;
       grid-template-columns: 1fr;
@@ -538,19 +884,6 @@
       text-align: left;
     }
     
-    .achievements-container {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      width: 100%;
-      padding: 0 0.5rem;
-    }
-    
-    .achievement-item {
-      width: 100%;
-      height: 100%;
-    }
-    
     .curri-box-wrap {
       display: grid;
       grid-template-columns: 1fr;
@@ -558,7 +891,7 @@
       width: 100%;
     }
     
-    /* 커리큘럼 박스 스타일 최적화 */
+    /* 커리큘럼 박스 */
     .curri-box .darkT.smls.pret.tacen {
       text-align: left;
       padding-left: 0.5rem;
@@ -584,7 +917,7 @@
       text-align: center;
     }
     
-    /* 텍스트 연출 문제 해결 */
+    /* 텍스트 처리 */
     .pride .darkT.mid.regu.mont {
       white-space: normal;
       overflow: visible;
@@ -609,10 +942,6 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
-    
-    .cur, .achievement-item, .curri-box {
-      margin-bottom: 0;
-    }
   }
   
   /* 작은 모바일 기기 (500px 이하) */
@@ -636,126 +965,148 @@
     }
   }
   
-  /* 가로 모드 최적화 */
-  @media (max-height: 500px) and (orientation: landscape) {
-    .curs,
-    .achievements-container,
-    .curri-box-wrap {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.8rem;
+  /* 태블릿 크기 (800px 이하) */
+  @media (max-width: 800px) {
+    .cur {
+      width: 90%;
+      flex-direction: column;
+      text-align: center;
+      padding: 1rem;
     }
     
     .cur img {
-      width: 50px;
-      height: 50px;
+      margin-bottom: 1rem;
     }
     
-    .cur, .achievement-item, .curri-box {
-      font-size: 0.9em;
+    .achievement-item {
+      width: 260px;
     }
   }
   
-  /* 다양한 모바일 기기 크기별 세부 최적화 */
-  @media (min-width: 360px) and (max-width: 400px) {
-    .curs {
-      grid-template-columns: 1fr;
-      gap: 1rem;
+  /* 극소형 화면 (Galaxy Fold 등) */
+  @media (max-width: 359px) {
+    .achievement-item,
+    .project-item {
+      min-height: 300px;
+      max-width: 280px;
     }
     
-    .cur {
-      padding: 1rem 0.8rem;
+    .achievement-img {
+      height: 130px;
+      min-height: 130px;
     }
+    
+    .achievement-content {
+      padding: 1rem;
+    }
+    
+    .achievement-content .darkT.big.bold.mont {
+      font-size: 1.2rem;
+    }
+    
+    .achievement-content .darkT.mid.pret {
+      font-size: 0.9rem;
+    }
+    
+    .achievement-link {
+      padding: 0.4rem 1.2rem;
+      font-size: 0.8rem;
+    } 
   }
   
-  @media (min-width: 401px) and (max-width: 480px) {
-    .curs {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-  }
-  
-  @media (min-width: 481px) and (max-width: 599px) {
-    .curs {
+  /* 중간 크기 태블릿 */
+  @media (min-width: 768px) and (max-width: 991px) {
+    .achievements-container,
+    .projects-container {
       grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
     }
   }
-  
-  @media (min-width: 600px) and (max-width: 700px) {
-    .curs, 
-    .achievements-container {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.2rem;
-    }
-  }
-  
-  /* 렌더링 안정화를 위한 애니메이션 */
-  @keyframes stabilize {
-    0% { opacity: 0.99; }
-    100% { opacity: 1; }
-  }
-  
-  /* 새로고침 후 특수 처리된 박스 */
-  .curri-box.reloaded {
-    animation: stabilize 0.1s ease forwards;
-  }
-  
-  /* 가시 영역에 들어온 박스 특수 처리 */
+
+  /* 모바일 수평 스크롤 방지 스타일 */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* style.css에 추가할 새로운 스타일 */
+
+/* ScrollReveal 관련 스타일 개선 */
+/* 애니메이션이 완료된 요소 표시 */
+.sr-reveal-complete {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* 새로고침 후 로딩 중 요소 숨김 방지 */
+[data-sr] {
+  visibility: visible;
+}
+
+/* 메달 및 프로젝트 항목 애니메이션 개선 */
+.achievement-item, 
+.project-item,
+.curri-box {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out, box-shadow 0.3s ease;
+}
+
+/* 가시성 전환을 위한 지연 애니메이션 처리 */
+@media (prefers-reduced-motion: no-preference) {
+  .achievement-item.visible,
+  .project-item.visible,
   .curri-box.visible {
-    transform: translateZ(0);
+    animation: fadeInTransform 0.5s ease forwards;
   }
-  
-  /* 브라우저별 특수 처리 */
-  @supports (-webkit-overflow-scrolling: touch) {
-    /* iOS 기기 특수 처리 */
-    .curri-box {
-      -webkit-transform: translateZ(0);
+
+  @keyframes fadeInTransform {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
-  }
-  
-  @supports (-moz-appearance: none) {
-    /* Firefox 특수 처리 */
-    .curri-box {
-      transform: translate3d(0, 0, 0);
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
-  
-  /* 삼성 인터넷 브라우저 특수 처리 */
-  @supports (-webkit-hyphens: none) and (not (-ms-accelerator: true)) {
-    .curri-box {
-      transform: translate3d(0, 0, 0) scale(1);
-    }
+}
+
+/* 새로고침 상태 요소 표시 보장 */
+.medal-gold.sr-reveal-complete .shine-effect,
+.medal-bronze.sr-reveal-complete .shine-effect {
+  animation-play-state: running !important;
+}
+
+/* 새로고침 시 안정화 애니메이션 강화 */
+.curri-box.reloaded {
+  animation: stabilize 0.1s ease forwards !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+@keyframes stabilize {
+  0% { opacity: 0.99; transform: translateZ(0); }
+  100% { opacity: 1; transform: translateZ(0); }
+}
+
+/* 애니메이션 항목 임시 숨김 방지 */
+html.sr .achievement-item,
+html.sr .curri-box,
+html.sr .medal-gold,
+html.sr .medal-bronze {
+  visibility: visible;
+}
+
+/* 스크롤 중 애니메이션 성능 최적화 */
+@media (prefers-reduced-motion: no-preference) {
+  .scrolling .achievement-item,
+  .scrolling .project-item,
+  .scrolling .curri-box,
+  .scrolling .medal-gold,
+  .scrolling .medal-bronze {
+    transition: none !important;
   }
-  
-  /* 텍스트 패턴 */
-  .responsive-text .mobile-break {
-    display: block;
-    height: 0.8em;
-  }
-  
-  @media (min-width: 701px) {
-    .responsive-text .mobile-break {
-      display: none;
-    }
-    
-    .responsive-text .text-chunk::after {
-      content: '\A';
-      white-space: pre;
-    }
-    
-    .responsive-text .text-spacer {
-      display: block;
-      height: 1em;
-    }
-  }
-  
-  @media (max-width: 700px) {
-    .responsive-text .text-spacer {
-      display: block;
-      height: 1.5em;
-    }
-    
-    .responsive-text .text-chunk {
-      display: inline-block;
-    }
-  }
+}

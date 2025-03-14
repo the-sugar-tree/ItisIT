@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>집중호우 예측 프로그램</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #a8d7f3;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M30,30 Q40,20 50,30 Q60,40 70,30 L70,70 Q60,80 50,70 Q40,60 30,70 Z" fill="white" opacity="0.3"/></svg>');
+            background-size: 100px 100px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #a8d7f3;
+        }
+        
+        header {
+            background-color: #a8d7f3;
+            color: #073e87;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 36px;
+            font-weight: bold;
+            color: #041f6b;
+            margin-bottom: 15px;
+        }
+        
+        .app-title {
+            background-color: #041f6b;
+            color: #3cc8f0;
+            text-align: center;
+            padding: 20px;
+            border: 4px solid #041f6b;
+            border-radius: 5px;
+            max-width: 300px;
+            margin: 0 auto 20px auto;
+        }
+        
+        .app-title h2 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .content {
+            display: flex;
+            padding: 0 20px 20px 20px;
+        }
+        
+        .sidebar {
+            width: 250px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .main {
+            flex-grow: 1;
+            background-color: white;
+            border: 4px solid #041f6b;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .location-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 4px solid #041f6b;
+            border-radius: 5px;
+            background-color: white;
+            color: #3cc8f0;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .location-btn:hover {
+            background-color: #e8f0fe;
+        }
+        
+        .location-btn.active {
+            background-color: #041f6b;
+            color: white;
+        }
+        
+        .github-btn {
+            display: block;
+            text-decoration: none;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .github-link {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: 4px solid #041f6b;
+            border-radius: 5px;
+            background-color: #041f6b;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .github-link:hover {
+            background-color: #072a8c;
+        }
+        
+        .chart-container {
+            padding: 20px;
+            height: 450px;
+            position: relative;
+            width: 100%;
+        }
+        
+        .chart-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #073e87;
+            margin-bottom: 10px;
+            background-color: white;
+            padding: 15px;
+        }
+        
+        .results {
+            background-color: #041f6b;
+            color: white;
+            padding: 20px;
+            border-top: 4px solid #041f6b;
+        }
+        
+        .results-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .results-info {
+            flex: 1;
+            min-width: 60%;
+        }
+        
+        .results p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        
+        .confirm-btn {
+            background-color: white;
+            border: 3px solid #041f6b;
+            border-radius: 5px;
+            color: #3cc8f0;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .confirm-btn:hover {
+            background-color: #e8f0fe;
+        }
+        
+        .status {
+            display: inline-block;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        
+        .status.extreme {
+            color: #ff5252;
+        }
+        
+        /* 모바일 레이아웃 */
+        @media (max-width: 767px) {
+            body {
+                padding: 10px;
+            }
+            
+            .logo {
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+            
+            .app-title {
+                padding: 15px;
+                max-width: 250px;
+                margin-bottom: 15px;
+            }
+            
+            .app-title h2 {
+                font-size: 24px;
+            }
+            
+            .content {
+                flex-direction: column;
+                padding: 0 10px 10px 10px;
+            }
+            
+            .sidebar {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 15px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 8px;
+            }
+            
+            .location-btn {
+                flex: 1 0 calc(50% - 4px);
+                padding: 12px 8px;
+                margin-bottom: 0;
+                font-size: 16px;
+                min-width: 110px;
+            }
+            
+            .github-btn {
+                margin-top: 15px;
+                width: 100%;
+            }
+            
+            .chart-container {
+                padding: 10px;
+                height: 300px;
+            }
+            
+            .chart-title {
+                font-size: 20px;
+                padding: 10px;
+            }
+            
+            .results {
+                padding: 15px;
+            }
+            
+            .results-content {
+                flex-direction: column;
+            }
+            
+            .results p {
+                margin: 8px 0;
+                font-size: 14px;
+            }
+            
+            .confirm-btn {
+                width: 100%;
+                margin-top: 10px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">HYDROFUTURE</div>
+        </header>
+        
+        <div class="app-title">
+            <h2>강수량 예측<br>프로그램</h2>
+        </div>
+        
+        <div class="content">
+            <div class="sidebar">
+                <button class="location-btn active" data-location="paju">파주</button>
+                <button class="location-btn" data-location="icheon">이천</button>
+                <button class="location-btn" data-location="yang">양평</button>
+                <button class="location-btn" data-location="suwon">수원</button>
+                <button class="location-btn" data-location="dongdu">동두천</button>
+                
+                <a href="https://github.com/yeha0125/demoday" target="_blank" class="github-btn">
+                    <div class="github-link">소스코드 보기</div>
+                </a>
+            </div>
+            
+            <div class="main">
+                <div class="chart-title">파주</div>
+                <div class="chart-container">
+                    <canvas id="rainChart"></canvas>
+                </div>
+                
+                <div class="results">
+                    <div class="results-content">
+                        <div class="results-info">
+                            <p id="max-rain">파주의 최고 강수량은 2043년도 44.5mm 입니다.</p>
+                            <p id="avg-rain">파주의 평균 강수량은 42.3mm 입니다.</p>
+                            <p id="rain-status">파주의 평균 강수량이 42.3mm 일 때 <span class="status extreme">[폭우]</span>상태입니다.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 각 지역별 고유한 강수량 데이터
+        const locationData = {
+            'paju': {
+                years: Array.from({length: 29}, (_, i) => 2022 + i),
+                rainfall: [39.5, 39.8, 40.3, 39.8, 41.2, 42.5, 43.7, 42.9, 41.3, 42.1, 43.6, 44.2, 41.9, 40.5, 41.7, 42.1, 44.3, 43.8, 41.5, 42.8, 44.5, 43.1, 42.2, 41.8, 42.9, 43.1, 42.6, 43.8],
+                maxYear: 2043,
+                maxRain: 44.5,
+                avgRain: 42.3,
+                status: "폭우"
+            },
+            'icheon': {
+                years: Array.from({length: 29}, (_, i) => 2022 + i),
+                rainfall: [36.2, 36.8, 37.3, 37.8, 38.1, 39.3, 38.6, 37.2, 38.4, 39.1, 38.5, 37.8, 38.9, 39.5, 38.6, 37.9, 38.2, 39.6, 40.3, 39.3, 38.4, 37.3, 38.8, 39.8, 41.2, 40.1, 39.6, 38.5],
+                maxYear: 2046,
+                maxRain: 41.2,
+                avgRain: 38.7,
+                status: "호우"
+            },
+            'yang': {
+                years: Array.from({length: 29}, (_, i) => 2022 + i),
+                rainfall: [44.5, 43.8, 45.3, 44.8, 46.1, 47.3, 48.6, 47.2, 46.3, 48.1, 49.5, 48.8, 47.9, 46.5, 47.6, 48.1, 49.2, 50.6, 49.3, 48.3, 50.4, 51.3, 49.3, 48.8, 50.9, 52.1, 51.6, 50.1],
+                maxYear: 2047,
+                maxRain: 52.1,
+                avgRain: 48.4,
+                status: "극심폭우"
+            },
+            'suwon': {
+                years: Array.from({length: 29}, (_, i) => 2022 + i),
+                rainfall: [32.5, 31.8, 33.3, 32.8, 31.1, 32.3, 33.6, 32.2, 31.3, 30.1, 32.5, 33.8, 32.9, 31.5, 30.6, 31.1, 32.2, 33.6, 32.3, 31.3, 30.4, 32.3, 33.3, 31.8, 30.9, 32.1, 31.6, 30.1],
+                maxYear: 2033,
+                maxRain: 33.8,
+                avgRain: 32.0,
+                status: "주의"
+            },
+            'dongdu': {
+                years: Array.from({length: 29}, (_, i) => 2022 + i),
+                rainfall: [41.5, 42.8, 43.3, 44.8, 45.1, 43.3, 42.6, 43.2, 44.3, 45.1, 46.5, 45.8, 44.9, 43.5, 42.6, 44.1, 45.2, 46.6, 47.3, 48.3, 46.4, 45.3, 44.3, 45.8, 46.9, 47.1, 45.6, 44.3],
+                maxYear: 2041,
+                maxRain: 48.3,
+                avgRain: 44.9,
+                status: "심각폭우"
+            }
+        };
+        
+        // 차트 초기화
+        let rainChart;
+        
+        function initChart(location) {
+            const data = locationData[location];
+            
+            // 이전 차트 제거
+            if (rainChart) {
+                rainChart.destroy();
+            }
+            
+            // 차트 생성
+            const ctx = document.getElementById('rainChart').getContext('2d');
+            
+            // 화면 크기 확인 및 차트 옵션 조정
+            const isMobile = window.innerWidth < 768;
+            
+            rainChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.years,
+                    datasets: [{
+                        label: '강수량 (mm)',
+                        data: data.rainfall,
+                        backgroundColor: 'rgba(60, 200, 240, 0.2)',
+                        borderColor: 'rgba(60, 200, 240, 1)',
+                        borderWidth: 2,
+                        pointRadius: isMobile ? 2 : 3,
+                        pointBackgroundColor: 'rgba(60, 200, 240, 1)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            align: 'end',
+                            labels: {
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: isMobile ? 12 : 14
+                                },
+                                color: '#041f6b'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(4, 31, 107, 0.8)',
+                            titleFont: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: isMobile ? 12 : 14
+                            },
+                            bodyFont: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: isMobile ? 12 : 14
+                            },
+                            padding: 10,
+                            cornerRadius: 4
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            // 지역에 따라 동적으로 스케일 조정
+                            min: function() {
+                                const minValue = Math.min(...data.rainfall);
+                                return Math.floor(minValue) - 1;
+                            }(),
+                            max: function() {
+                                const maxValue = Math.max(...data.rainfall);
+                                return Math.ceil(maxValue) + 1;
+                            }(),
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            ticks: {
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: isMobile ? 10 : 12
+                                },
+                                color: '#333'
+                            },
+                            title: {
+                                display: true,
+                                text: '강수량 (mm)',
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: isMobile ? 12 : 14,
+                                    weight: 'bold'
+                                },
+                                color: '#041f6b'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            ticks: {
+                                autoSkip: true,
+                                maxTicksLimit: isMobile ? 6 : 10,
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: isMobile ? 10 : 12
+                                },
+                                color: '#333'
+                            },
+                            title: {
+                                display: true,
+                                text: '연도',
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: isMobile ? 12 : 14,
+                                    weight: 'bold'
+                                },
+                                color: '#041f6b'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 정보 업데이트
+            document.querySelector('.chart-title').textContent = getLocationName(location);
+            document.getElementById('max-rain').textContent = `${getLocationName(location)}의 최고 강수량은 ${data.maxYear}년도 ${data.maxRain.toFixed(1)}mm 입니다.`;
+            document.getElementById('avg-rain').textContent = `${getLocationName(location)}의 평균 강수량은 ${data.avgRain.toFixed(1)}mm 입니다.`;
+            document.getElementById('rain-status').innerHTML = 
+                `${getLocationName(location)}의 평균 강수량이 ${data.avgRain.toFixed(1)}mm 일 때 <span class="status extreme">[${data.status}]</span>상태입니다.`;
+        }
+        
+        function getLocationName(locationId) {
+            const names = {
+                'paju': '파주',
+                'icheon': '이천',
+                'yang': '양평',
+                'suwon': '수원',
+                'dongdu': '동두천'
+            };
+            return names[locationId];
+        }
+        
+        // 이벤트 리스너
+        document.querySelectorAll('.location-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // 활성화 버튼 업데이트
+                document.querySelector('.location-btn.active').classList.remove('active');
+                this.classList.add('active');
+                
+                // 차트 업데이트
+                initChart(this.dataset.location);
+            });
+        });
+        
+        // 리사이즈 이벤트에 차트 업데이트 추가
+        window.addEventListener('resize', function() {
+            const activeLocation = document.querySelector('.location-btn.active').dataset.location;
+            initChart(activeLocation);
+        });
+        
+        // 초기 차트 표시
+        document.addEventListener('DOMContentLoaded', function() {
+            initChart('paju');
+        });
+        
+        // 확인 버튼 클릭 이벤트
+        document.querySelector('.confirm-btn').addEventListener('click', function() {
+            alert('데이터를 확인했습니다.');
+        });
+    </script>
+</body>
+</html>

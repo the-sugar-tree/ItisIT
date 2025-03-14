@@ -5,7 +5,6 @@
     <!-- 기본 메타 태그 설정 -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     <meta name="HandheldFriendly" content="true" />
     <meta name="theme-color" content="#646464" media="(prefers-color-scheme: light)" />
@@ -70,11 +69,12 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- 모바일 최적화를 위한 추가 메타 태그 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="theme-color" content="#646464" /> <!-- 모바일 브라우저 테마 색상 -->
     <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- iOS 웹앱 모드 지원 -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> <!-- iOS 상태바 스타일 -->
     <meta name="format-detection" content="telephone=no" /> <!-- 전화번호 자동 링크 방지 -->
+    
+    <!-- 리소스 프리로드 -->
     <link rel="preload" href="img/logo-removebg.png" as="image" />
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961M.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_1@1.0/SokchoBadaDotum.woff2" as="font" type="font/woff2" crossorigin />
@@ -95,7 +95,7 @@
             <p class="darkT big pret logo-des">저현고등학교 정보공학연구소</p>
             
             <!-- 신청 링크 버튼 -->
-            <a href="#" id="apply-button" class="darkT mid pret logo-des aplic-link">신청 바로가기</a>
+            <a href="#apply" id="apply-button" class="darkT mid pret logo-des aplic-link">신청 바로가기</a>
         </section>
 
         <!-- 섹션 2: 동아리 소개 - 동아리의 주요 설명 -->
@@ -194,81 +194,96 @@
         
         <!-- 섹션 6: 실적 카드 - 주요 프로젝트 및 성과 상세 -->
         <section class="page achievements">
-            <!-- 실적 아이템 컨테이너 - 6개 프로젝트 카드 -->
+            
+            <!-- 수상 실적 컨테이너 -->
             <div class="achievements-container">
                 <!-- 실적 1: SW동행 데모데이 대상 -->
-                <div class="achievement-item">
+                <div class="achievement-item medal-gold">
+                    <div class="medal-ribbon">
+                        <span class="medal-text">대상</span>
+                    </div>
                     <div class="achievement-img">
                         <img src="img/achievement1.jpg" alt="SW동행 데모데이 대상" class="achievement-thumbnail">
+                        <div class="shine-effect"></div>
                     </div>
                     <div class="achievement-content">
-                        <p class="darkT big bold mont">SW동행 데모데이 대상</p>
-                        <p class="darkT mid pret">독수리와 오형제</p>
-                        <a href="https://github.com/gmts117/BinaryEncrypt" target="_blank" class="achievement-link">프로젝트 보기</a>
+                        <p class="darkT big bold mont">SW동행 데모데이 <br> 장관상</p>
+                        <p class="darkT mid pret">DigiHelper</p>
+                        <a href="https://www.canva.com/design/DAGUfU3zI7E/cWwR-LpSOkk3GlIC82wl-Q/watch?utm_content=DAGUfU3zI7E&utm_campaign=share_your_design&utm_medium=link2&utm_source=shareyourdesignpanel" target="_blank" class="achievement-link">시연 영상 보기</a>
                     </div>
                 </div>
                 
                 <!-- 실적 2: SW동행 데모데이 장려상 -->
-                <div class="achievement-item">
+                <div class="achievement-item medal-bronze">
+                    <div class="medal-ribbon">
+                        <span class="medal-text">장려상</span>
+                    </div>
                     <div class="achievement-img">
-                        <img src="img/achievement2.jpg" alt="SW동행 데모데이 장려상" class="achievement-thumbnail">
+                        <img src="img/achievement2.png" alt="SW동행 데모데이 장려상" class="achievement-thumbnail">
+                        <div class="shine-effect"></div>
                     </div>
                     <div class="achievement-content">
-                        <p class="darkT big bold mont">SW동행 데모데이 장려상</p>
-                        <p class="darkT mid pret">HydroFuture</p>
-                        <a href="https://github.com/gmts117/bongo-backgroung" target="_blank" class="achievement-link">프로젝트 보기</a>
+                        <p class="darkT big bold mont">SW동행 데모데이 <br> 장려상</p>
+                        <p class="darkT mid pret">HydroFuture</p>   
+                        <a href="hydrofuture.html" target="_blank" class="achievement-link">데모사이트</a>
                     </div>
                 </div>
                 
                 <!-- 실적 3: SW동행 데모데이 장려상 -->
-                <div class="achievement-item">
+                <div class="achievement-item medal-bronze">
+                    <div class="medal-ribbon">
+                        <span class="medal-text">장려상</span>
+                    </div>
                     <div class="achievement-img">
                         <img src="img/achievement3.jpg" alt="SW동행 데모데이 장려상" class="achievement-thumbnail">
+                        <div class="shine-effect"></div>
                     </div>
                     <div class="achievement-content">
-                        <p class="darkT big bold mont">SW동행 데모데이 장려상</p>
+                        <p class="darkT big bold mont">SW동행 데모데이 <br> 장려상</p>
                         <p class="darkT mid pret">Hanullim</p>
-                        <a href="https://github.com/gmts117/Hanullim" target="_blank" class="achievement-link">프로젝트 보기</a>
+                        <a href="hanullim.html" target="_blank" class="achievement-link">데모사이트</a>
                     </div>
                 </div>
-                
-                <!-- 실적 4: 게임 개발 프로젝트 -->
-                <div class="achievement-item">
+
+                <!-- 프로젝트 1: 게임 개발 프로젝트 -->
+                <div class="achievement-item project-item">
                     <div class="achievement-img">
                         <img src="img/achievement4.jpg" alt="게임 개발" class="achievement-thumbnail">
                     </div>
                     <div class="achievement-content">
-                        <p class="darkT big bold mont">게임 개발 프로젝트</p>
-                        <p class="darkT mid pret">1학년 게임</p>
-                        <a href="https://github.com/gmts117/2P-ShootingGame" target="_blank" class="achievement-link">프로젝트 보기</a>
+                        <p class="darkT big bold mont">llamagame</p>
+                        <p class="darkT mid pret">1학년부</p>
+                        <a href="https://github.com/hmy106/llamagame" target="_blank" class="achievement-link">프로젝트 보기</a>
                     </div>
                 </div>
                 
-                <!-- 실적 5: 게임 개발 프로젝트 -->
-                <div class="achievement-item">
+                <!-- 프로젝트 2: 게임 개발 프로젝트 -->
+                <div class="achievement-item project-item">
                     <div class="achievement-img">
                         <img src="img/achievement5.jpg" alt="게임 개발" class="achievement-thumbnail">
                     </div>
                     <div class="achievement-content">
-                        <p class="darkT big bold mont">게임 개발 프로젝트</p>
-                        <p class="darkT mid pret">홍지호 게임</p>
-                        <a href="https://github.com/gmts117/dup_remover" target="_blank" class="achievement-link">프로젝트 보기</a>
+                        <p class="darkT big bold mont">Halo  fan game</p>
+                        <p class="darkT mid pret">2학년부</p>
+                        <a href="https://drive.google.com/file/d/19z6N8K83IR0oM1VtBkjQdljD_JsYJT42/view?usp=sharing" target="_blank" class="achievement-link">프로젝트 보기</a>
                     </div>
                 </div>
                 
-                <!-- 실적 6: 보안 취약점 분석 -->
-                <div class="achievement-item">
+                <!-- 프로젝트 3: 보안 취약점 분석 -->
+                <div class="achievement-item project-item">
                     <div class="achievement-img">
-                        <img src="img/achievement6.jpg" alt="학교 사이트 취약점 발견" class="achievement-thumbnail">
+                        <img src="img/achievement6.png" alt="학교 사이트 취약점 발견" class="achievement-thumbnail">
                     </div>
                     <div class="achievement-content">
                         <p class="darkT big bold mont">보안 취약점 분석</p>
                         <p class="darkT mid pret">학교 수강신청 웹 취약점</p>
-                        <a href="https://docs.google.com/document/d/1fG3WJQwWp7yr-YLr2FDpHE0SOnphsF6WtInOK_ph0p8/edit?tab=t.0#heading=h.1ajxiza5ed9l" target="_blank" class="achievement-link">보고서 보기</a>
+                        <a href="https://docs.google.com/document/d/1I6UIRj5-_VqJVeUizR-6FdYxlIuaMLKKn0NT5qkLfzs/edit?usp=sharing" target="_blank" class="achievement-link">보고서 보기</a>
                     </div>
                 </div>
             </div>
         </section>
+        
+        
         
         <!-- 섹션 7: 커리큘럼 소개 헤더 - 연간 계획 개요 -->
         <section class="page curriculum-header">
@@ -280,61 +295,51 @@
                 <span class="text-chunk">1학기 초에 간단한 프로젝트 탐색 활동 후</span>
                 <span class="text-chunk">남은 차시 동안 "조별 프로젝트"를 진행합니다</span>
                 <span class="text-spacer"></span>
-                <span class="text-chunk">총 10차시로 진행할 예정입니다.</span>
+                <span class="text-chunk">다음과 같이 진행될 예정입니다.</span>
             </p>
         </section>
 
-        <!-- 섹션 8: 커리큘럼 상세 - 각 차시별 활동 소개 -->
+        <!-- 섹션 8: 커리큘럼 상세 - 활동 소개 -->
         <section class="page curriculum">
-            <!-- 커리큘럼 박스 컨테이너 - 전체 10차시 활동 소개 -->
+            <!-- 커리큘럼 박스 컨테이너 - 전체 활동 소개 -->
             <div class="curri-box-wrap">
                 <!-- 1차시: OT -->
                 <div class="curri-box">
-                    <p class="darkT mid bold mont tacen">1차시: OT</p><br>
+                    <p class="darkT mid bold mont tacen">1차시 : OT</p><br>
                     <h4 class="darkT smls pret tacen">
                         OT를 진행합니다.<br><br>
-                        선후배의 이름을 외우고 친목을 도모할 수 있는 자리입니다.
+                        선후배의 이름을 외우고 친목을 도모하는 자리입니다.
                     </h4><br>
                 </div>
                 
-                <!-- 2차시: 활동 탐구 1 - 게임 개발 관련 -->
+                <!-- 2차시: 작년 활동 탐구 -->
                 <div class="curri-box">
-                    <p class="darkT mid bold mont tacen">2차시: 활동 탐구 1</p><br>
+                    <p class="darkT mid bold mont tacen">2차시 : 작년 활동 탐구</p><br>
                     <h4 class="darkT smls pret tacen">
-                        작년 게임 분야 개발팀이 어떤 프로젝트를 진행했는지 소개합니다.<br>
-                        또한, 유니티로 아주 간단한 게임을 직접 만들어보는 활동을 진행합니다.
+                        작년 선배들의 활동을 살펴봅니다.<br>
                     </h4><br>
                 </div>
                 
-                <!-- 3차시: 활동 탐구 2 - 웹 개발 및 데이터 분석 관련 -->
+                <!-- 3차시: 주제 찾기 & 조 짜기 -->
                 <div class="curri-box">
-                    <p class="darkT mid bold mont tacen">3차시: 활동 탐구 2</p><br>
+                    <p class="darkT mid bold mont tacen">3차시 : 새 프로젝트 주제 탐색</p><br>
                     <h4 class="darkT smls pret tacen">
-                        작년 웹 개발, 데이터 분석 분야 팀이 진행한 프로젝트를 소개합니다.<br>
-                        또한, Square space를 이용한 간단한 웹페이지 만들기와 영화 평점 데이터 분석을 체험합니다.
-                    </h4><br>
-                </div>
-                
-                <!-- 4차시: 주제 찾기 & 조 짜기 -->
-                <div class="curri-box">
-                    <p class="darkT mid bold mont tacen">4차시: 주제 찾기 & 조 짜기</p><br>
-                    <h4 class="darkT smls pret tacen">
-                        1학기 동안 진행할 프로젝트의 주제를 모색합니다.<br>
+                        앞으로 진행할 프로젝트의 주제를 모색합니다.<br>
                         같이 프로젝트를 진행할 팀원 또한 구합니다.
                     </h4><br>
                 </div>
                 
-                <!-- 5~6차시: 조 별 공부 -->
+                <!-- 4~5차시: 조 별 공부 -->
                 <div class="curri-box">
-                    <p class="darkT mid bold mont tacen">5~6차시: 조 별 공부</p><br>
+                    <p class="darkT mid bold mont tacen">4~5차시 : 조 별 심화 공부</p><br>
                     <h4 class="darkT smls pret tacen">
                         각 조가 진행할 프로젝트와 관련된 심화 공부를 합니다.
                     </h4><br>
                 </div>
                 
-                <!-- 7~9차시: 프로젝트 활동 -->
+                <!-- 6~9차시: 프로젝트 활동 -->
                 <div class="curri-box">
-                    <p class="darkT mid bold mont tacen">7~9차시: 프로젝트 활동</p><br>
+                    <p class="darkT mid bold mont tacen">6~9차시 : 프로젝트 활동</p><br>
                     <h4 class="darkT smls pret tacen">
                         조 별로 프로젝트를 진행합니다.
                     </h4><br>
@@ -342,7 +347,7 @@
                 
                 <!-- 10차시: 프로젝트 소개 & 학술제 준비 -->
                 <div class="curri-box">
-                    <p class="darkT mid bold mont tacen">10차시: 프로젝트 소개 & 학술제 준비</p><br>
+                    <p class="darkT mid bold mont tacen">10차시 : 프로젝트 소개 & 학술제 준비</p><br>
                     <h4 class="darkT smls pret tacen">
                         다른 팀이 만든 프로젝트에 대해 알아보고 개선할 점에 대하여 이야기를 나눕니다.
                     </h4><br>
@@ -350,7 +355,7 @@
             </div>
         </section>
 
-        <!-- 섹션 9: 지원 섹션 - 지원 방법 안내 -->
+        <!-- 섹션 9: 지원 섹션 - 지원 방법 안내 --> 
         <section class="page application" id="apply">
             <p class="darkT bigl bold mont tacen">지원은 어디서 하나요?</p>
             <a href="#" id="main-apply-button" class="aplic-link mid bold pret">신청 바로가기</a>
@@ -394,62 +399,7 @@
     <script src="main.js"></script>
     
     <!-- 인라인 스크립트: 스크롤 애니메이션 설정 -->
-    <script>
-        // ScrollReveal 초기화 - 페이지 스크롤시 요소들이 나타나는 애니메이션 설정
-        window.sr = ScrollReveal({ reset: true });
-
-        // 로고 이미지 애니메이션: 위에서 아래로 내려오는 효과
-        sr.reveal(".logo-img", {
-            origin: "top",          // 시작 위치: 상단
-            duration: 500,          // 애니메이션 시간(ms)
-            distance: "200px",      // 이동 거리
-        });
-
-        // 로고 텍스트 애니메이션: 오른쪽에서 왼쪽으로 이동
-        sr.reveal(".logo", {
-            origin: "right",        // 시작 위치: 오른쪽
-            duration: 500,          // 애니메이션 시간(ms)
-            distance: "200px",      // 이동 거리
-        });
-
-        // 로고 설명 애니메이션: 아래에서 위로 올라오는 효과
-        sr.reveal(".logo-des", {
-            origin: "bottom",       // 시작 위치: 하단
-            duration: 500,          // 애니메이션 시간(ms)
-            distance: "200px",      // 이동 거리
-        });
-        
-        // 자랑 섹션 제목 애니메이션: 왼쪽에서 오른쪽으로 이동
-        sr.reveal(".PR-title", {
-            origin: "left",         // 시작 위치: 왼쪽
-            duration: 500,          // 애니메이션 시간(ms)
-            distance: "100px",      // 이동 거리
-        });
-        
-        // 교육 내용 항목 애니메이션: 순차적으로 아래에서 위로 
-        sr.reveal(".cur", {
-            origin: "bottom",       // 시작 위치: 하단
-            duration: 500,          // 애니메이션 시간(ms)
-            distance: "50px",       // 이동 거리
-            interval: 200           // 각 항목 간 시간 간격(ms)
-        });
-        
-        // 실적 아이템 애니메이션: 순차적으로 아래에서 위로
-        sr.reveal(".achievement-item", {
-            origin: "bottom",       // 시작 위치: 하단
-            duration: 500,          // 애니메이션 시간(ms)
-            distance: "50px",       // 이동 거리
-            interval: 200           // 각 항목 간 시간 간격(ms)
-        });
-        
-        // 커리큘럼 박스 애니메이션: 오른쪽에서 왼쪽으로 순차적 이동
-        sr.reveal(".curri-box", {
-            origin: "right",        // 시작 위치: 오른쪽
-            duration: 500,          // 애니메이션 시간(ms)
-            distance: "50px",       // 이동 거리
-            interval: 100           // 각 항목 간 시간 간격(ms)
-        });
-    </script>
+    
 </body>
 
 </html>

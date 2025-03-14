@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>To Korean Voice Translator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-color: #5B68FF;
+            --primary-hover: #4550DB;
+            --secondary-color: #FF5B8D;
+            --secondary-hover: #DB4A77;
+            --background-color: #F8F9FC;
+            --card-bg: #FFFFFF;
+            --text-primary: #2A2A3A;
+            --text-secondary: #6E7191;
+            --border-radius: 12px;
+            --safe-area-inset-top: env(safe-area-inset-top);
+            --safe-area-inset-bottom: env(safe-area-inset-bottom);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            position: fixed;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            background-image: linear-gradient(135deg, #f5f7ff 0%, #f8f9fc 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-primary);
+            touch-action: manipulation;
+            padding-top: var(--safe-area-inset-top);
+            padding-bottom: var(--safe-area-inset-bottom);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 100%;
+            padding: 16px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 16px 0;
+            letter-spacing: -0.5px;
+            text-shadow: 0px 2px 4px rgba(91, 104, 255, 0.1);
+        }
+        
+        .language-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 24px 0;
+        }
+        
+        .language-button {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            border: none;
+            padding: 16px;
+            font-size: 15px;
+            cursor: pointer;
+            width: 30%;
+            height: 65px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 20px rgba(91, 104, 255, 0.07);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: 1px solid rgba(91, 104, 255, 0.1);
+        }
+        
+        .language-button:active {
+            background-color: var(--primary-color);
+            color: white;
+            transform: scale(0.98);
+        }
+        
+        .chat-container {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+        
+        #chat-screen {
+            height: 100%;
+            display: none;
+        }
+        
+        .chat-output {
+            background-color: var(--card-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%235b68ff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            border-radius: var(--border-radius);
+            padding: 16px;
+            flex: 1;
+            margin-bottom: 20px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            box-shadow: 0 10px 30px rgba(91, 104, 255, 0.07);
+            border: 1px solid rgba(91, 104, 255, 0.08);
+        }
+        
+        .message {
+            margin-bottom: 16px;
+            padding: 14px;
+            border-radius: var(--border-radius);
+            max-width: 85%;
+            position: relative;
+            font-size: 14px;
+            line-height: 1.5;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .user-message {
+            background-color: rgba(91, 104, 255, 0.08);
+            border-left: 4px solid var(--primary-color);
+            margin-left: auto;
+            animation: slide-in-right 0.3s ease forwards;
+        }
+        
+        .assistant-message {
+            background-color: rgba(255, 91, 141, 0.08);
+            border-left: 4px solid var(--secondary-color);
+            margin-right: auto;
+            animation: slide-in-left 0.3s ease forwards;
+        }
+        
+        @keyframes slide-in-right {
+            from {
+                transform: translateX(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slide-in-left {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .status-message {
+            font-style: italic;
+            color: var(--text-secondary);
+            text-align: center;
+            background-color: transparent;
+            padding: 8px;
+            max-width: 100%;
+            margin: 10px auto;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            padding-bottom: var(--safe-area-inset-bottom);
+        }
+        
+        .back-button, .start-button {
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            transition: all 0.2s ease;
+        }
+        
+        .back-button {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            border: 1px solid rgba(110, 113, 145, 0.15);
+            padding: 8px 15px;
+            font-size: 14px;
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            width: auto;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .start-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            width: 80%;
+            max-width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .back-button:active {
+            background-color: rgba(110, 113, 145, 0.05);
+            transform: scale(0.98);
+        }
+        
+        .start-button:active {
+            background-color: var(--primary-hover);
+            transform: scale(0.98);
+        }
+        
+        .recording-indicator {
+            display: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            margin: 20px auto;
+            animation: pulse 1.5s infinite;
+            box-shadow: 0 0 0 0 rgba(255, 91, 141, 0.7);
+        }
+        
+        /* GitHub button style */
+        .github-button {
+            position: fixed;
+            top: calc(10px + var(--safe-area-inset-top));
+            right: 10px;
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            border: 1px solid rgba(91, 104, 255, 0.2);
+            padding: 8px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .github-button:active {
+            background-color: #333;
+            color: white;
+            transform: scale(0.98);
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 91, 141, 0.7);
+            }
+            
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(255, 91, 141, 0);
+            }
+            
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 91, 141, 0);
+            }
+        }
+        
+        #main-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100%;
+        }
+        
+        /* Fix for iOS Safari 100vh issue */
+        @supports (-webkit-touch-callout: none) {
+            .container {
+                height: -webkit-fill-available;
+            }
+        }
+        
+        /* Prevent text selection on mobile */
+        .language-button, .back-button, .start-button, .github-button {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- GitHub Repository Button -->
+    <a href="https://github.com/gmts117/Hanullim" class="github-button" target="_blank">
+        <i class="fab fa-github"></i> GitHub 원본 코드
+    </a>
+    
+    <div class="container" id="main-screen">
+        <div class="title">To Korean Voice Translator</div>
+        
+        <div class="language-buttons">
+            <button class="language-button" onclick="startConversation('my')">
+                <i class="fas fa-language"></i><br>ဗမာစာ
+            </button>
+            <button class="language-button" onclick="startConversation('ta')">
+                <i class="fas fa-language"></i><br>தமிழ்
+            </button>
+            <button class="language-button" onclick="startConversation('si')">
+                <i class="fas fa-language"></i><br>සිංහල
+            </button>
+        </div>
+    </div>
+    
+    <div class="container" id="chat-screen" style="display:none; position: relative;">
+        <button class="back-button" id="back-button"><i class="fas fa-arrow-left"></i> Back</button>
+        <div class="chat-output" id="output">
+            <div class="message status-message">언어를 선택해주세요...</div>
+        </div>
+        
+        <div class="recording-indicator" id="recording-indicator"></div>
+        
+        <div class="button-container">
+            <button class="start-button" id="start-button"><i class="fas fa-microphone"></i> start</button>
+        </div>
+    </div>
+    
+    <script>
+        // 모바일 뷰포트 높이 보정
+        function setAppHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+            document.body.style.height = `${window.innerHeight}px`;
+        }
+        
+        setAppHeight();
+        window.addEventListener('resize', setAppHeight);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(setAppHeight, 100);
+        });
+        
+        // Demo script with animations and transitions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add some subtle animation to the title
+            const title = document.querySelector('.title');
+            title.style.opacity = '0';
+            title.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                title.style.transition = 'all 0.7s ease';
+                title.style.opacity = '1';
+                title.style.transform = 'translateY(0)';
+            }, 300);
+            
+            // Add animation to the language buttons
+            const buttons = document.querySelectorAll('.language-button');
+            buttons.forEach((btn, index) => {
+                btn.style.opacity = '0';
+                btn.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    btn.style.transition = 'all 0.5s ease';
+                    btn.style.opacity = '1';
+                    btn.style.transform = 'translateY(0)';
+                }, 500 + (index * 150));
+            });
+            
+            // Add animation to GitHub button
+            const githubButton = document.querySelector('.github-button');
+            githubButton.style.opacity = '0';
+            githubButton.style.transform = 'translateY(-10px)';
+            
+            setTimeout(() => {
+                githubButton.style.transition = 'all 0.5s ease';
+                githubButton.style.opacity = '1';
+                githubButton.style.transform = 'translateY(0)';
+            }, 1000);
+        });
+        
+        function showMainScreen() {
+            const mainScreen = document.getElementById('main-screen');
+            const chatScreen = document.getElementById('chat-screen');
+            
+            // Fade out chat screen
+            chatScreen.style.opacity = '0';
+            chatScreen.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                chatScreen.style.display = 'none';
+                mainScreen.style.display = 'flex';
+                mainScreen.style.opacity = '0';
+                mainScreen.style.transform = 'scale(0.95)';
+                
+                // Fade in main screen
+                setTimeout(() => {
+                    mainScreen.style.transition = 'all 0.5s ease';
+                    mainScreen.style.opacity = '1';
+                    mainScreen.style.transform = 'scale(1)';
+                }, 50);
+            }, 300);
+        }
+        
+        function showChatScreen() {
+            const mainScreen = document.getElementById('main-screen');
+            const chatScreen = document.getElementById('chat-screen');
+            
+            // Fade out main screen
+            mainScreen.style.opacity = '0';
+            mainScreen.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                mainScreen.style.display = 'none';
+                chatScreen.style.display = 'flex';
+                chatScreen.style.opacity = '0';
+                chatScreen.style.transform = 'scale(0.95)';
+                
+                // Fade in chat screen
+                setTimeout(() => {
+                    chatScreen.style.transition = 'all 0.5s ease';
+                    chatScreen.style.opacity = '1';
+                    chatScreen.style.transform = 'scale(1)';
+                }, 50);
+            }, 300);
+        }
+        
+        // 언어별 예시 메시지와 번역
+        const exampleMessages = {
+            'si': {
+                // 싱할라어
+                messages: [
+                    {
+                        user: '수바 우데사낙',
+                        userTranslation: '좋은 아침입니다',
+                        assistant: '오바타 수바 우데사낙',
+                        assistantTranslation: '당신도 좋은 아침이에요'
+                    },
+                    {
+                        user: '마마 코홈다 이나와',
+                        userTranslation: '어떻게 지내세요?',
+                        assistant: '마마 혼돈다 이나와. 오바?',
+                        assistantTranslation: '잘 지내요. 당신은요?'
+                    },
+                    {
+                        user: '마타 보짠 케마티이',
+                        userTranslation: '한국 음식을 먹고 싶어요',
+                        assistant: '한국 카마 라사이, 킴치 카나 에카 혼다이',
+                        assistantTranslation: '한국 음식은 맛있어요, 김치가 특히 좋아요'
+                    }
+                ]
+            },
+            'ta': {
+                // 타밀어
+                messages: [
+                    {
+                        user: '바나캄',
+                        userTranslation: '안녕하세요',
+                        assistant: '엥가 니라메이 에파디 이루키라두',
+                        assistantTranslation: '오늘 기분이 어떠세요?'
+                    },
+                    {
+                        user: '나안 난드라기 이루키렌',
+                        userTranslation: '저는 기분이 좋아요',
+                        assistant: '아다이 켈카 비룸부기리르카?',
+                        assistantTranslation: '오늘 뭘 하고 싶으세요?'
+                    },
+                    {
+                        user: '엔나쿠 코리야 사팔 사피다 비룸부기라두',
+                        userTranslation: '한국 음식을 먹고 싶어요',
+                        assistant: '사리, 엥가 시간다 코리야 우나바가툭쿠 셀보마',
+                        assistantTranslation: '좋아요, 좋은 한국 식당을 찾아볼게요'
+                    }
+                ]
+            },
+            'my': {
+                // 미얀마어
+                messages: [
+                    {
+                        user: '민갈라바',
+                        userTranslation: '안녕하세요',
+                        assistant: '네이카웅 라요 딸',
+                        assistantTranslation: '오늘 날씨가 좋네요'
+                    },
+                    {
+                        user: '호드벳 네까웅라 도 야뱌달',
+                        userTranslation: '정말 좋은 날씨예요',
+                        assistant: '바마 사가 핀좐 태징 야달라?',
+                        assistantTranslation: '버마어 배운 지 얼마나 되셨어요?'
+                    },
+                    {
+                        user: '트웨야다 핀좐 마춘부',
+                        userTranslation: '얼마 안 됐어요, 공부 중이에요',
+                        assistant: '트웨 까웅 딸, 코리아 사가 뻬삐야 진럽바',
+                        assistantTranslation: '잘하시네요, 당신에게 한국어도 가르쳐 드릴게요'
+                    }
+                ]
+            }
+        };
+        
+        let currentLanguage = 'si'; // 기본 언어
+        
+        function startConversation(languageCode) {
+            currentLanguage = languageCode;
+            showChatScreen();
+            conversationIndex = 0; // 대화 인덱스 초기화
+            
+            // Set button text based on language
+            if (languageCode === 'si') {
+                document.getElementById('back-button').innerHTML = '<i class="fas fa-arrow-left"></i> ආපසු';
+                document.getElementById('start-button').innerHTML = '<i class="fas fa-microphone"></i> ආරම්භ කරන්න';
+            } else if (languageCode === 'ta') {
+                document.getElementById('back-button').innerHTML = '<i class="fas fa-arrow-left"></i> பின்னால்';
+                document.getElementById('start-button').innerHTML = '<i class="fas fa-microphone"></i> தொடங்கு';
+            } else if (languageCode === 'my') {
+                document.getElementById('back-button').innerHTML = '<i class="fas fa-arrow-left"></i> နောက်သို့';
+                document.getElementById('start-button').innerHTML = '<i class="fas fa-microphone"></i> စတင်ပါ';
+            }
+            
+            // 선택한 언어 안내 메시지 표시
+            const output = document.getElementById('output');
+            output.innerHTML = '';
+            
+            // 언어별 안내 메시지
+            const welcomeMessages = {
+                'si': '싱할라어를 선택하셨습니다. 마이크를 눌러 대화를 시작하세요.',
+                'ta': '타밀어를 선택하셨습니다. 마이크를 눌러 대화를 시작하세요.',
+                'my': '미얀마어를 선택하셨습니다. 마이크를 눌러 대화를 시작하세요.'
+            };
+            
+            setTimeout(() => {
+                typeMessage(`<div class="message status-message">${welcomeMessages[languageCode]}</div>`, output);
+                
+                setTimeout(() => {
+                    typeMessage('<div class="message status-message">🎤 음성을 기다리는 중...</div>', output);
+                }, 800);
+            }, 500);
+        }
+        
+        // Simulate typing animation
+        function typeMessage(html, container) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            const messageElement = tempDiv.firstChild;
+            container.appendChild(messageElement);
+            
+            // Scroll to bottom
+            container.scrollTop = container.scrollHeight;
+            
+            // Add fade-in animation
+            messageElement.style.opacity = '0';
+            messageElement.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                messageElement.style.transition = 'all 0.3s ease';
+                messageElement.style.opacity = '1';
+                messageElement.style.transform = 'translateY(0)';
+            }, 50);
+        }
+        
+        // 대화 인덱스 관리
+        let conversationIndex = 0;
+        
+        // Recording and response simulation
+        document.getElementById('start-button').addEventListener('click', function() {
+            const output = document.getElementById('output');
+            const recordingIndicator = document.getElementById('recording-indicator');
+            const examples = exampleMessages[currentLanguage];
+            
+            // 현재 대화 가져오기
+            const currentMessageSet = examples.messages[conversationIndex % examples.messages.length];
+            
+            // Show recording indicator
+            recordingIndicator.style.display = 'block';
+            typeMessage('<div class="message status-message">🎤 녹음 중...</div>', output);
+            
+            // After 2 seconds, show completion
+            setTimeout(function() {
+                recordingIndicator.style.display = 'none';
+                
+                // Example message and translation based on selected language
+                typeMessage('<div class="message status-message">🎤 음성 인식 완료</div>', output);
+                
+                setTimeout(() => {
+                    typeMessage(`<div class="message user-message">🗣️ 사용자: ${currentMessageSet.user}</div>`, output);
+                    
+                    setTimeout(() => {
+                        typeMessage(`<div class="message user-message">🔍 번역: ${currentMessageSet.userTranslation}</div>`, output);
+                        
+                        setTimeout(() => {
+                            typeMessage('<div class="message status-message">💭 응답 생성 중...</div>', output);
+                            
+                            // Show response after a delay
+                            setTimeout(() => {
+                                typeMessage(`<div class="message assistant-message">🤖 GPT: ${currentMessageSet.assistant}</div>`, output);
+                                
+                                setTimeout(() => {
+                                    typeMessage(`<div class="message assistant-message">🔍 번역: ${currentMessageSet.assistantTranslation}</div>`, output);
+                                    
+                                    setTimeout(() => {
+                                        typeMessage('<div class="message status-message">🔊 음성 재생 중...</div>', output);
+                                        
+                                        // Audio playback simulation
+                                        setTimeout(() => {
+                                            typeMessage('<div class="message status-message">🎤 음성을 기다리는 중...</div>', output);
+                                            
+                                            // 다음 대화로 이동
+                                            conversationIndex++;
+                                        }, 2000);
+                                    }, 800);
+                                }, 800);
+                            }, 1200);
+                        }, 800);
+                    }, 800);
+                }, 800);
+            }, 2000);
+        });
+        
+        // Back button
+        document.getElementById('back-button').addEventListener('click', showMainScreen);
+        
+        // 더블 탭 방지
+        document.addEventListener('dblclick', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+        
+        // iOS에서 제스처 확대 방지
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+        
+        // 스크롤 문제 방지
+        document.addEventListener('touchmove', function(e) {
+            if (e.target.closest('.chat-output') === null) {
+                e.preventDefault();
+            }
+        }, { passive: false }); 
+    </script>
+</body>
+</html>
